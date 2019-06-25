@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T14:33:28+03:00
+
+====== ViewGroup ======
+Created вівторок 25 червень 2019
+
+====== Android - ViewGroup ======
+
+ViewGroup: https://developer.android.com/reference/android/view/ViewGroup.html?hl=ru
+
+ViewGroup - субкласс от View - базовый класс для лейаутов - невидимый контейнер, удерживающий другие ViewGroup или View, задающий их свойства расположения в лэйауте и другие общие свойства. Все элементы ViewGroup и View образуют единое (возможно, изменяемое) дерево.
+
