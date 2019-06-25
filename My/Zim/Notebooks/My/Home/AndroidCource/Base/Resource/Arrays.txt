@@ -1,0 +1,60 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T17:03:08+03:00
+
+====== Arrays ======
+Created вівторок 25 червень 2019
+
+Ресурсы массивов
+Существует еще один тип ресурсов для хранения значений массивов. Принято хранить данные ресурсы в файле arrays.xml папки res/values. Вот как может выглядеть файл:
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<array name="choose">
+		<item>@string/red_pill_label</item>
+		<item>@string/blue_pill_label</item>
+	</array>
+
+	<string-array name="catnames">
+		<item>Рыжик</item>
+		<item>Барсик</item>
+		<item>Мурзик</item>
+	</string-array>
+
+	<integer-array name="years">
+		<item>2009</item>
+		<item>2010</item>
+		<item>2011</item>
+	</integer-array>
+
+</resources>
+Как видите, есть типы ресурсов array, string-array, integer-array.
+Программно получить доступ к ресурсам массива можно так:
+
+// загрузка массива строк из res/values/arrays.xml в текстовое поле textStrings
+String[] names = getResources().getStringArray(R.array.names);
+for(int i = 0; i < names.length; i++) {
+	textStrings.append("Name[" + i + "]: "+ names[i] + "\n");
+} 
+
+// загрузка массива целых чисел из res/values/arrays.xml в текстовое поле textDigits
+int[] digits = getResources().getIntArray(R.array.digits);
+for(int i = 0; i < digits.length; i++) {
+	textDigits.append("Digit[" + i + "]: "+ digits[i] + "\n");
+} 
+Ещё один вариант, который может вам встретиться. Цвета заданы в массиве и доступ к ним через особый объект TypedArray
+
+<array name="rainbow">
+	<item>#ff0000</item>
+	<item>#ff9900</item>
+	<item>#ffff00</item>
+	<item>#00ff00</item>
+	<item>#0000ff</item>
+	<item>#0099ff</item>
+</array>
+
+TypedArray arrayColors = getResources().obtainTypedArray(R.array.rainbow);
+ImageView imageView = findViewById(R.id.imageView);
+imageView.setBackgroundColor(arrayColors.getColor(1, 0xFF000000));
+arrayColors.recycle();

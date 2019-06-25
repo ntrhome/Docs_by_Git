@@ -1,0 +1,89 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T14:31:11+03:00
+
+====== onClick ======
+Created вівторок 25 червень 2019
+
+**Android - Обработка события (24.doc)**
+Три способа обработки событий:
+
+1) через атрибут onClick (относительно новый способ, свойство OnClick) - задается имя public метода-обработчика (android:onClick="onMyButtonClick") в классе активности с одним параметром - объект View:
+	public void onMyButtonClick(View view)
+	{  
+		Toast.makeText(this, "Зачем вы нажали?", Toast.LENGTH_SHORT).show();  
+	}
+Данный способ применим не только к кнопке, но и к другим элементам и позволяет сократить количество строк кода.
+Данный способ не будет работать в фрагментах. Кнопка должна быть частью активности, а не фрагмента.
+
+2) через метод setOnClickListener() - наиболее традиционный способ в Java, прослушивает нажатия на кнопку:
+	- объявляем ссылку на кнопку: 
+			Button button = findViewById(R.id.mybutton);
+	- объявляем метод для обработки: 
+			button.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					...        
+				}
+			});
+	- или раздельно (если много кнопок - может организовать код):
+		Выше мы в методе setOnClickListener сразу прописали слушателя new OnClickListener... с методом onClick(). Можно сначала отдельно объявить отдельную переменную myButtonClickListener с методом .а затем дать ее слушателю:
+			OnClickListener myButtonClickListener = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					
+				}
+			};
+			button.setOnClickListener(myButtonClickListener);
+3) через интерфейс OnClickListener - родственный второму способу и также традиционный для Java - кнопка назначает себе обработчика с помощью метода setOnClickListener (View.OnClickListener l), т.е. подойдет любой объект с интерфейсом View.OnClickListener. Мы можем указать, что наш класс Activity будет использовать интерфейс View.OnClickListener.
+
+	В заголовок нашего класса-activity (блока тела) дописываем implements OnClickListener (который View а не Dialog), например:
+			public class MainActivity extends AppCompatActivity implements View.OnClickListener
+	Название вашего класса будет подчёркнуто волнистой красной чертой, щёлкните слово public и дождитесь появления красной лампочки, выберите вариант Implement methods. Появится диалоговое окно с выделенным методом onClick. Выбираем его и в коде появится заготовка для нажатия кнопки:
+			@Override
+		   public void onClick(View v) {
+					...
+			}
+	Метод будет реализован не в отдельном объекте-обработчике, а в Activity, который и будет выступать обработчиком. В методе onCreate() присвоим обработчик кнопке. Это будет объект this, т.е. текущий объект нашей активности.
+	(My - т.е. класс активности дополняется инструментарием слушателя?)
+			button.setOnClickListener(this);
+	На первых порах такой способ также покажется вам сложным и непонятным. Со временем и опытом понимание обязательно придёт.
+	
+	Рекомендую вам использовать первый способ, как самый простой и понятный. Использование второго и третьего способа дадут вам представление, как писать обработчики для других событий, так как кнопка может иметь и другие события. Например, кроме обычного нажатия существует долгое нажатие на кнопку (long click). 
+
+	Когда у вас одна кнопка в окне, то у вас будет один метод, две кнопки - два метода и так далее. Если у вас несколько кнопок, то не обязательно для каждой прописывать свой метод, можно обойтись и одним, а уже в самом методе разделять код по идентификатору кнопки. 
+
+	В методе присутствует параметр View, который и позволяет определить, для какой кнопки предназначен кусок кода:
+			public void onMyButtonClick(View view)  
+			{  
+				switch(view.getId())  { 
+				case  R.id.button1: // идентификатор "@+id/button1"
+					showAlertDialog();
+					break;
+				...
+			}  
+	Предположим, у вас есть три кнопки:
+		import android.view.View.OnClickListener;
+		public class ButtonDemoActivity extends Activity implements OnClickListener...
+		
+		final Button button1 = (Button)findViewById(R.id.button1);
+		final Button button2 = (Button)findViewById(R.id.button2);
+		final Button button3 = (Button)findViewById(R.id.button3);
+
+		// устанавливаем один обработчик для всех кнопок
+		button1.setOnClickListener(this);
+		button2.setOnClickListener(this);
+		button3.setOnClickListener(this);
+
+		// анализируем, какая кнопка была нажата. Всего один метод для всех кнопок
+		@Override
+		public void onClick(View v){
+			switch (v.getId()) {
+				case R.id.button1: editText.setText("Нажата кнопка Button1"); break;
+				case R.id.button2: editText.setText("Нажата кнопка Button2"); break;
+				case R.id.button3: editText.setText("Нажата кнопка Button3"); break;
+			}
+		}
+		Как видите, мы сократили количество кода. Теперь у нас один обработчик onClick(), в котором прописаны действия для трёх кнопок.
+
+

@@ -1,0 +1,44 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T17:04:56+03:00
+
+====== Raw ======
+Created вівторок 25 червень 2019
+
+Использование необработанных ресурсов RAW
+Если разместить файлы, в том числе написанные на XML, в каталоге res/raw, они не будут скомпилированы в двоичном формате, а попадают в пакет прикладных программ как есть. Для считывания таких фалов нужно использовать явные API с поддержкой потоков. К категории raw относятся аудио- и видеофайлы.
+Каждый такой файл, помещенный в папку res/raw, имеет свой идентификатор, генерируемый в R.java. Чтобы получить доступ к ресурсам, предназначенным только для чтения, вызовите метод openRawResource(), принадлежащий объекту Resource приложения. Таким образом, вы получите объект InputStream, основанный на указанном файле. В качестве имени переменной, принадлежащей R.raw, задайте имя файла (без расширения). Если бы вы поместили текстовый файл в res/raw/test.txt, то его можно было бы прочитать при помощи следующего кода, используя идентификатор test:
+
+public void onClick(View view) {
+	TextView infoTextView = findViewById(R.id.textViewInfo);
+	infoTextView.setText(getStringFromRawFile(MainActivity.this));
+}
+
+private String  getStringFromRawFile(Activity activity) {
+	Resources r = activity.getResources();
+	InputStream is = r.openRawResource(R.raw.test);
+	String myText = null;
+	try {
+		myText = convertStreamToString(is);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	try {
+		is.close();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	return  myText;
+}
+
+private String  convertStreamToString(InputStream is) throws IOException {
+	ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	int i = is.read();
+	while( i != -1)
+	{
+		baos.write(i);
+		i = is.read();
+	}
+	return  baos.toString();
+}
+Мы уже рассматривали структуру папок в каталоге res. Компилятор ресурсов, входящий в состав инструмента Android Asset Packaging Tool (ААРТ), собирает все ресурсы, кроме raw, и помещает все их в итоговый файл АРК. Этот файл, содержащий код и ресурсы приложения Android, аналогичен файлу JAR, который применяется в Java (АРК означает Android package - пакет Android). Именно файл АРК устанавливается на устройство.

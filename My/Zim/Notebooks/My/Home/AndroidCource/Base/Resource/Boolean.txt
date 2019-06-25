@@ -1,0 +1,26 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T16:55:02+03:00
+
+====== Boolean ======
+Created вівторок 25 червень 2019
+
+Булевы ресурсы
+Можно также хранить в ресурсах булевы значения true или false в файле с произвольным именем в папке res/values.
+В файле с корневым элементом <resources> вы определяете элемент bool с нужным значением. У элемента есть атрибут name - строка, определяющая имя булевого ресурса.
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<bool name="autostart">true</bool>
+	<bool name="sound">no</bool>
+</resources>
+Получить значение через код:
+
+Resources res = getResources();
+boolean autostartSetting = res.getBoolean(R.bool.autostart);
+В макете для булевых атрибутов
+
+<ImageView
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:adjustViewBounds="@bool/adjust_view_bounds" />

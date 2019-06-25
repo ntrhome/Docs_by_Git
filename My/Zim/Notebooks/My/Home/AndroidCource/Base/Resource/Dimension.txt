@@ -1,0 +1,26 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T17:00:10+03:00
+
+====== Dimension ======
+Created вівторок 25 червень 2019
+
+Ресурсы размеров
+В Android используются следующие единицы измерения: пикселы, дюймы, точки. Все они могут входит в состав ХМL-шаблонов и кода Jаvа. Данные единицы измерения также можно использовать в качестве ресурсов при помощи тега <dimen> (обычно используют файл dimens.xml):
+
+<resources> 
+<dimen name="in_pixels">1px</dimen> 
+<dimen name="in_dp">5dp</dimen> 
+<dimen name="in_sp">100sp</dimen>
+</resources> 
+Список разрешенных единиц измерения можно прочитать в отдельной статье Android:: Единицы измерения (http://developer.alexanderklimov.ru/android/theory/scales.php).
+Метод Java использует в названии целое слово Dimension, а в коде и в XML используется сокращенная версия dimen
+Вы должны иметь доступ к каждому экземпляру объекта Resources, чтобы найти значения его параметров. Это можно сделать, применив метод getResources() к объекту Activity. Когда у вас будет объект Resources, его можно запросить по id, чтобы узнать значение этого параметра.
+
+float dimen = activity.getResources().getDimension(R.dimen.in_pixels);
+В XML-файлах используется следующий синтаксис
+
+<TextView  
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:textSize="@dimen/in_dp"/>

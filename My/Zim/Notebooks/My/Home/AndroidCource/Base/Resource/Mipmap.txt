@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T17:02:21+03:00
+
+====== Mipmap ======
+Created вівторок 25 червень 2019
+
+С появлением Nexus 6 и Nexus 9, Гугл добавила в Android новые типы ресурсов - Mipmap. По сути, это замена ресурсам Drawable для значков приложения. Нужно подготовить значки и расположить их в папках mipmap-mdpi, mipmap-hdpi и т.д.
+

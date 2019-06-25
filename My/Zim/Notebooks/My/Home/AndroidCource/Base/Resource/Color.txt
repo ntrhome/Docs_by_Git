@@ -1,0 +1,71 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T16:59:55+03:00
+
+====== Color ======
+Created вівторок 25 червень 2019
+
+Цветовые ресурсы
+Для работы со цветом используется тег <color>, а цвет указывается в специальных значениях.
+* #RGB;
+* #RRGGBB;
+* #ARGB;
+* #AARRGGBB;
+Также существуют предопределенные названия цветов. Такие ID доступны в пространстве имен android.R.соlor. Посмотреть цветовые значения цветов можно в документации http://developer.android.com/reference/android/R.color.html.
+Например, там есть оранжевый цвет holo_orange_dark, а также оранжевый-светлый, синий-темный, синий-светлый и т.д.
+Обычно для цветовых ресурсов используют файл colors.xml в подкаталоге res/values. Но можно использовать любое произвольное имя файла, или даже вставить их в файл вместе со строковыми ресурсами strings.xml. Android прочтет все файлы, а затем обработает их, присвоив им нужные ID.
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="red">#f00</color>
+	<color name="yellow">#FFFF00</color>
+	<color name="green">#FF00FF00</color>
+</resources>
+Для программного использования цветовых ресурсов можно использовать следующий код:
+
+int myRedColor = activity.getResourses.getColor(R.color.red); // получаем значение красного цвета
+
+linearLayout.setBackgroundResource(R.color.yellow); // устанавливаем фон в желтый цвет
+
+linearLayout.setBackgroundResource(android.R.color.holo_orange_dark); // устанавливаем фон в оранжевый цвет
+Более длинный вариант без склейки методов.
+
+Resources res = getResources(); // получим объект для работы с ресурсами
+int title_color = res.getColor(R.color.title_red); // получим значение цвета, заданного в ресурсах
+При использовании в xml-файлах (например, файл разметки) используется следующий формат:
+
+<TextView  
+	android:layout_width="match_parent" 
+	android:layout_height="wrap_content" 
+	android:text="@string/anytext"
+	android:color="@color/red" />
+Обратите внимание на использование префикса @ для того, чтобы ввести ссылку ресурса — текст после этого префикса — имя ресурса. В этом случае мы не должны были указывать пакет, потому что мы ссылаемся на ресурс в нашем собственном пакете. Для ссылки на системный ресурс мы должны записать: android:textColor="@android:color/black" (чёрный цвет).
+
+= = = = = = = = = = = = = = = = = = = = = =
+
+Ресурсы отрисовываемых цветов
+Кроме обычных изображений в Android поддерживается и другой тип отрисовываемых ресурсов, которые называются отрисовываемыми цветами (color-drawable). По сути, это просто цветные прямоугольники.
+Чтобы задать цветной прямоугольник, нужно указать тег <drawable> в имени узла XML-файла, находящегося в подкаталоге res/values/.
+
+<resources>
+	<drawable name="black_rectangle">#000000</drawable>
+	<drawable name="white_rectangle">#ffffff</drawable>
+</resources>
+В XML-шаблонах ресурсы используются следующим образом
+
+<TextView
+	android:layout_width="fill_parent"
+	...
+	android:background="@drawable/white_rectangle" />
+Программным способом:
+
+// Получение отрисовываемого объекта
+ColorDrawable whiteDrawable =
+	(ColorDrawable)activity.getResources().getDrawable(R.drawable.white_rectangle);
+	
+// установление его в качестве фона для текстового вида
+textView.setBackground(whiteDrawable);
+
+= = = = = = = = = = = = = = = = = = = = = =
+
+

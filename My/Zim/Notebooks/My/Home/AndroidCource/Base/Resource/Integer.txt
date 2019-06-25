@@ -1,0 +1,34 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T16:55:42+03:00
+
+====== Integer ======
+Created вівторок 25 червень 2019
+
+Числовые ресурсы
+В ресурсах можно хранить числа типа Integer. Хранить можно в произвольном имени XML-файла в папке res/values/ в корневом элементе <resources>
+У элемента <integer> есть атрибут name, определяющий имя числового значения.
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<integer name="max_speed">75</integer>
+	<integer name="min_speed">5</integer>
+</resources>
+Для работы в коде:
+
+Resources res = getResources();
+int maxSpeed = res.getInteger(R.integer.max_speed);
+Таким образом, для работы с типами boolean и int следует применять код (в общем виде):
+
+Resources resources = context.getResources();
+boolean myBooleanResource = resources.getBoolean(R.bool.my_boolean_resource);
+int myIntegerResource = resources.getInteger(R.integer.my_integer_resource);
+Нет необходимости писать избыточный код (хотя он и будет работать) типа такого:
+
+boolean myBooleanResource = Boolean.parseBoolean(context.getString(R.string.my_boolean_resource));
+int myIntegerResource = Integer.parseInt(context.getString(R.string.my_integer_resource));
+
+// или так (совсем никуда не годится)
+if ("false".equals(context.getString(R.string.my_boolean_resource))){
+	// ...
+}

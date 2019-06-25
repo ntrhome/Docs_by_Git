@@ -1,0 +1,612 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T17:52:11+03:00
+
+====== Menu ======
+Created вівторок 25 червень 2019
+
+32.doc, 33.doc
+
+32.doc:
+Меню
+Android поддерживает несколько типов меню. Первый - на телефоне есть отдельная кнопка Menu (в старых телефонах), нажатие которой вызывает меню. В новых устройствах отдельную кнопку убрали, заменив на значок меню в виде трёх точек в вертикальной ориентации. Второй тип - контекстное меню, которое появляется при нажатии и удерживания пальца на экране в нужном месте (также можно нажать и удерживать центральную кнопку на телефоне). Контекстное меню в свою очередь может иметь подменю. Сегодня мы познакомимся с первым типом меню. В данной статье будет рассматриваться работа с меню на новых устройствах под управлением Android 4.0 и выше.
+В шаблоне Empty Activity нет меню, поэтому мы создадим его сами. Это поможет вам понять принцип работы и получить общее представление о проекте. Запоминать названия классов, методов и код для обработки выбора пунктов меню необязательно. В других шаблонах меню будет встроено и вы можете сразу использовать его.
+Создайте новый проект на основе Empty Activity и запустите его. Никакого меню пока нет.
+Создадим несколько строковых ресурсов в файле res/values/strings.xml, которые будут отвечать за пункты меню:
+
+<string name="action_settings">Settings</string>
+<string name="action_cat_male">Кот</string>
+<string name="action_cat_female">Кошка</string>
+<string name="action_kitten">Котёнок</string>
+Теперь создайте новую папку menu в папке res (правый щелчок мыши на папке res, | New | Directory). Далее создайте в созданной папке файл menu_main.xml - имя указывает, что меню относится к основной активности MainActivity (правый щелчок мыши на папке menu | New | Menu Resource File). Если вы будете создавать приложение с несколькими экранами, то у каждой активности будет отдельное меню со своими настройками. Пока откроем файл menu_main.xml и добавим в полученный шаблон свой код:
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:app="http://schemas.android.com/apk/res-auto"
+	  xmlns:tools="http://schemas.android.com/tools"
+	  tools:context=".MainActivity">
+	<item
+		android:id="@+id/action_settings"
+		android:orderInCategory="100"
+		android:title="@string/action_settings"
+		app:showAsAction="never"/>
+</menu>
+Откроем файл MainActivity. Сейчас в нём только один метод onCreate(). Добавим новый метод onCreateOptionsMenu(). Именно данный метод отвечает за появление меню у активности. Выберите в студии меню Code | Override Methods... и в следующим окне начинайте вводить название метода по первым буквам. Можно вводить по первым заглавным буквам, т.е. ocom(onCreateOptionsMenu), чтобы быстро найти нужную строку. Нажимаем кнопку OK и получаем заготовку.
+ 
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	return super.onCreateOptionsMenu(menu);
+}
+Добавляем в заготовку метод, который берёт данные из ресурсов меню и преобразует их в пункты меню на экране.
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	getMenuInflater().inflate(R.menu.menu_main, menu);
+	return true;
+}
+В методе inflate() вы указываете на ресурс меню (R.menu.menu_main) и объект класса Menu.
+По английски "inflate" переводится как надувать, т.е. по замыслу разработчиков Android, мы как бы надуваем данными объект, например, меню. Но на самом деле слово "inflate" происходит от словосочетания in flat - в квартиру. Существует старинная традиция запускать в квартиру первым кота, который исследует все закоулки дома и заявляет о своём согласии жить в нём. Так и мы запускаем данные из XML-файла в объект MenuInflater.
+Запустите проект. Теперь в правой части заголовка вы увидите значок из трёх точек, выстроенных в вертикальную линию. Нажмите на значок, чтобы увидеть пункт меню Settings.
+ 
+Как не трудно догадаться, элемент item отвечает за отдельный пункт меню. Добавим ещё три пункта по такому же принципу, меняя только идентификатор и текст для меню:
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:app="http://schemas.android.com/apk/res-auto"
+	  xmlns:tools="http://schemas.android.com/tools"
+	  tools:context=".MainActivity">
+	<item
+		android:id="@+id/action_settings"
+		android:orderInCategory="100"
+		android:title="@string/action_settings"
+		app:showAsAction="never"/>
+
+	<item
+		android:id="@+id/action_cat1"
+		android:orderInCategory="100"
+		android:title="@string/action_cat_male"
+		app:showAsAction="never"/>
+
+	<item
+		android:id="@+id/action_cat2"
+		android:orderInCategory="100"
+		android:title="@string/action_cat_female"
+		app:showAsAction="never"/>
+
+	<item
+		android:id="@+id/action_cat3"
+		android:orderInCategory="100"
+		android:title="@string/action_kitten"
+		app:showAsAction="never"/>
+</menu>
+Запустите проект и попробуйте снова вызвать меню. Вы увидите три новых пункта.
+ 
+Параметры id и title не нуждаются в объяснениях. Параметр orderInCategory позволяет задать свой порядок вывода пунктов меню. Предположим вы создали пять пунктов меню, но пока не определились с порядком их вывода на экране. Чтобы не перемещать постоянно целые блоки кода для пунктов меню в нужном порядке, можно воспользоваться данным параметром.
+И, наконец, важный атрибут app:showAsAction определяет поведение меню в ActionBar. Значение never означает, что элемент меню не должен выводиться в заголовке, а только в всплывающем меню, т.е. находиться за тремя точками. Если вы установите значение always, то пункт Settings сразу появится в заголовке вашего приложения. Также доступны значения ifRooms, withText и collapseActionView. Попробуйте самостоятельно. Например, ifRoom выводит пункт меню, если позволяет место. Если пунктов будет много, то они будут только мешаться. Как правило, в таком варианте выводят очень короткое слово или значок для частых операций, чтобы избежать лишнего щелчка на три точки.
+Обратите внимание на атрибут app:showAsAction, который относится к пространству имён xmlns:app="http://schemas.android.com/apk/res-auto". Было время, когда такого пространства имён не существовало и в проектах использовался атрибут android:showAsAction из стандартного пространства имён. Если студия будет ругаться на ошибку, то отредактируйте код.
+Пока пункты меню не выполняют полезной работы. Любое нажатие на пункт просто закрывает меню без видимых последствий. Мы ещё не написали код для обработки нажатий.
+Выбор пунктов меню
+Мы научились создавать меню. Но пока оно бесполезно, так как пункты меню никак не реагируют на наши нажатия. Для обработки нажатий пунктов меню служит другой метод onOptionsItemSelected(). Добавим метод по такому же принципу, как для предыдущего примера. Получим заготовку.
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+	return super.onOptionsItemSelected(item);
+}
+Параметр item отвечает за пункт меню. Вам следует получить идентификатор меню через метод getItemId() и указать для него код. Так как обычно меню состоит из нескольких пунктов, то удобно использовать конструкции if/else или switch. Для вывода информации воспользуемся текстовой меткой. Добавьте на экран активности компонент TextView. Можете использовать имеющийся TextView с надписью "Hello World!", только присвойте ему идентификатор.
+
+<TextView
+	android:id="@+id/textView"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="Hello World!"/>
+Добавим код в заготовку для выбранного пункта меню:
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+	// получим идентификатор выбранного пункта меню
+	int id = item.getItemId();
+
+	TextView infoTextView = (TextView) findViewById(R.id.textView);
+
+	// Операции для выбранного пункта меню
+	switch (id) {
+		case R.id.action_cat1:
+			infoTextView.setText("Вы выбрали кота!");
+			return true;
+		case R.id.action_cat2:
+			infoTextView.setText("Вы выбрали кошку!");
+			return true;
+		case R.id.action_cat3:
+			infoTextView.setText("Вы выбрали котёнка!");
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+	}
+}
+Запустите приложение, вызовите меню и выберите любой пункт меню. В текстовом поле должно появиться сообщение.
+ 
+Существует альтернативный способ через XML, похожий на обработку щелчков кнопки (начиная с Android 3.0). Вы можете добавить атрибут android:onClick в ресурсах меню, и вам не нужно использовать вызов метода onOptionsItemSelected(). При помощи android:onClick вы можете указать нужный метод при выборе пункта меню. Добавьте данный атрибут к пункту Settings
+
+<item
+	android:id="@+id/action_settings"
+	android:title="@string/action_settings"
+	android:orderInCategory="100"
+	android:onClick="onSettingsMenuClick"
+	app:showAsAction="never" />
+Теперь в коде активности напишем следующее:
+
+// у атрибута пункта меню Settings установлено значение android:onClick="onSettingsMenuClick"
+public void onSettingsMenuClick(MenuItem item) {
+	TextView infoTextView = (TextView) findViewById(R.id.textView);
+	infoTextView.setText("Вы выбрали пункт Settings, лучше бы выбрали кота");
+}
+Переключатели
+Внешний вид пунктов меню можно изменить на вид с переключателями. Для этого нужно добавить элемент group с атрибутом android:checkableBehavior="single":
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context=".MainActivity">
+	<item
+		android:id="@+id/action_settings"
+		android:orderInCategory="100"
+		android:title="@string/action_settings"
+		app:showAsAction="never" />
+
+	<group android:checkableBehavior="single">
+
+		<item
+			android:id="@+id/action_cat1"
+			android:orderInCategory="100"
+			android:title="@string/action_cat_male"
+			app:showAsAction="never" />
+
+		<item
+			android:id="@+id/action_cat2"
+			android:orderInCategory="100"
+			android:title="@string/action_cat_female"
+			app:showAsAction="never" />
+
+		<item
+			android:id="@+id/action_cat3"
+			android:orderInCategory="100"
+			android:title="@string/action_kitten"
+			app:showAsAction="never" />
+	</group>
+</menu>
+ 
+Большого смысла в этом режиме я не вижу. И рассматривать его не будем.
+Режим Design
+В Android Studio 2.2 добавили графический режим построения меню, которых похож на панель инструментов для добавления новых компонентов на экран. У меню панель состоит из четырёх элементов: Menu Item, Search Item, Menu, Group.
+ 
+Принцип тот же, выбираете нужный элемент и перетаскиваете его на экран в область меню. Если вы изучили ручное создание меню, то данный способ не вызовет у вас затруднений. С его помощью можно быстро набросать структуру меню, а затем подправить вручную.
+
+
+= = = = = = = = = = = = = = = = 
+
+33.doc:
+
+Меню
+Меню выбора опций (Options Menu)
+За меню отвечает класс android.view.Menu. Каждая активность связана с одним объектом меню. Само меню содержит пункты меню (класс android.view.MenuItem) и подменю (класс android.view.SubMenu).
+При нажатии кнопки Menu на старых телефонах появляется набор пунктов меню, прикрепляемый к активности. Меню может содержать значки. Такое меню может содержать шесть пунктов (как правило). При наличии более шести пунктов используется расширенное меню - в этом случае вместо шестого пункта появляется пункт Опции(More). При нажатии данного пункта показывается расширенное меню со списком пунктов, которые не поместились в основной части меню выбора опций.
+Когда меню открывается впервые, Android вызывает метод onCreateOptionsMenu(), передавая в качестве параметра объект Menu. Меню можно создавать в виде ресурсов в XML-файле или использовать метод add().
+В стандартном проекте при выборе обычного шаблона уже есть заготовка для меню из одного пункта Settings и вызов метода для меню (вы об этом уже знаете).
+Создание меню при помощи ресурсов
+Рассмотрим работу с меню через ресурсы. Для создания меню используются ресурсы, которые должны храниться в XML-файле. Сам файл должен находиться в папке res/menu/ вашего проекта. Меню состоит из следующих элементов:
+<menu>
+Определяет меню, которое будет содержать пункты меню. Элемент <menu> должен быть корневым элементом в XML-структуре файла и может содержать один или несколько элементов <item> и <group>
+<item>
+Создает непосредственно пункты меню. Данный элемент может иметь вложенный элемент <menu> для создания подменю
+<group>
+При желании можете также использовать невидимый контейнер для элементов <item>. Это позволяет достичь некоторых эффектов
+Предположим, мы решили использовать меню для какой-нибудь игры. Создадим новый файл game_menu.xml:
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/new_game"
+		  android:title="@string/new_game" />
+	<item android:id="@+id/help"
+		  android:title="@string/help" />
+</menu>
+Мы создали меню с двумя пунктами. Каждый пункт включает в себя следующие атрибуты:
+android:id
+Идентификатор пункта меню, по которому приложение может распознать при выделении пункта меню пользователем
+android:title
+Текст, который будет выводиться в меню
+Существуют и другие атрибуты для элемента item, например android:icon="@drawable/home" позволит также вывести значок для пункта меню, а android:enabled="false" позволяет сделать пункт меню недоступным.
+Атрибут android:titleCondensed применяется в том случае, если обычный заголовок слишком широкий и не «помещается» в выбранном элементе меню.
+Атрибут android:orderInCategory определяет порядок, в котором отображаются элементы меню MenuItems.
+Кстати, вы можете использовать встроенные системные значки Android. Например, android:icon="@android:drawable/ic_menu_help" позволит вам вывести значок помощи, который зашит в систему. Подробнее о системных значках почитайте в статье Системные графические ресурсы
+При создании меню мы указали на строковые ресурсы @string/new_game и @string/help. Необходимо добавить новые строки в файле strings.xml:
+
+<string name="new_game">Новая игра</string>
+<string name="help">Справка</string>
+Теперь нужно внести изменения в классе активности, в котором будет выводиться меню. Программа должна сконвертировать созданный нами ресурс меню в программный объект. Для этой цели существует специальный метод MenuInflater.inflate(), который вызывается в специальном методе обратного вызова onCreateOptionsMenu(). Данный метод и предназначен для вывода меню при нажатии кнопки MENU на устройстве:
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu) 
+{
+	MenuInflater inflater = getMenuInflater();
+	inflater.inflate(R.menu.game_menu, menu);
+	return true;
+}
+После вставки кода среда разработки попросит импортировать недостающие пространства имен.
+
+import android.view.Menu;
+import android.view.MenuInflater;
+Метод onCreateOptionsMenu() метод инициирует первое появление меню на экране и принимает в качестве параметра объект Menu (для старых устройств). Вы можете сохранить ссылку на меню и использовать ее в любом месте кода, пока метод onCreateOptionsMenu() опять не будет вызван. Вам необходимо всегда использовать реализацию этого обработчика из родительского класса, потому как она при необходимости автоматически включает в меню дополнительные системные пункты. В новых устройствах метод вызывается при создании активности. Метод должен возвращать значение true, чтобы меню было видимым на экране.
+Запустив программу, нажмите кнопку MENU на эмуляторе, чтобы увидеть созданное меню.
+ 
+Метод getMenuInflater() возвращает экземпляр класса MenuInflater, который мы используем для чтения данных меню из XML.
+Как видите, меню появляется в нижней части экрана. Всего можно одновременно вывести на экран шесть пунктов меню. Если пунктов больше, то будет выведено пять пунктов плюс шестой пункт More, который позволит увидеть остальные пункты. Давайте проверим и добавим новые пункты меню.
+Сначала добавим шесть пунктов.
+ 
+Добавим еще один пункт к меню, чтобы их стало семь.
+ 
+Выбор пунктов меню
+Мы научились создавать меню. Но пока оно бесполезно, так как пункты меню никак не реагируют на наши нажатия. Для обработки нажатий пунктов меню служит метод onOptionsItemSelected(). Метод распознает пункт, выбранный пользователем, через MenuItem. Мы можем теперь определить выбранный пункт через вызов getItemId(), который возвращает идентификатор пункта меню. Далее через оператор switch нам остается определить нужные команды:
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) 
+{
+	// Операции для выбранного пункта меню
+	switch (item.getItemId()) 
+	{
+	case R.id.new_game:
+		newGame();
+		return true;
+	case R.id.help:
+		showHelp();
+		return true;
+	default:
+		return super.onOptionsItemSelected(item);
+	}
+}
+
+public void newGame()
+{
+	edtext.setText("Выбран пункт Новая игра");
+}
+
+public void showHelp()
+{
+	edtext.setText("Выбран пункт Справка");
+}
+Запустите приложение, вызовите меню и выберите первый или второй пункт меню. В текстовом поле должно появиться сообщение.
+ 
+В приведенном примере getItemId() запрашивает ID для выбранного пункта меню и начинает сравнивать через оператор выбора switch с идентификаторами, которые мы задали в XML-ресурсах. При обнаружении нужного идентификатора выполняется обработчик для заданного пункта меню. Если программа ничего не обнаружит, то выполняется оператор default, который возвращает super class.
+В Android 3.0 можно добавить атрибут android:onClick в ресурсах меню, и вам уже не нужно использовать onOptionsItemSelected(). При помощи android:onClick вы можете указать нужный метод при выборе пункта меню.
+
+// у атрибута пункта меню установлено значение android:onClick="onMenuClick"
+
+public void onMenuClick(MenuItem item){
+	edtext.setText("Выбран пункт Накормить кота");
+}
+Программное создание меню
+Рассмотрим программное создание меню для полноты картины. Нам понадобится определить несколько констант для пунктов меню:
+
+// идентификаторы для пунктов меню
+private static final int IDM_OPEN = 101;
+private static final int IDM_SAVE = 102;
+
+public boolean onCreateOptionsMenu(Menu menu)
+{
+	// добавляем пункты меню
+	menu.add(Menu.NONE, IDM_OPEN, Menu.NONE, "Открыть");
+	menu.add(Menu.NONE, IDM_SAVE, Menu.NONE, "Сохранить");
+}
+У метода add() есть четыре параметра:
+* идентификатор группы - позволяет связывать пункт меню с группой других пунктов этого меню
+* идентификатор пункта для обработчика события выбора пункта меню
+* порядок расположения пункта в меню - позволяет определять позицию в меню. По умолчанию (Menu.NONE или 0) пункты идут в том порядке, как задано в коде
+* заголовок - текст, который выводится в пункте меню. Можно использовать строковый ресурс
+Метод возвращает объект MenuItem, который можно использовать для установки дополнительных свойств, например, для установить значок, горячую клавишу и т.д.
+Если вы хотите создать меню со значками, то воспользуйтесь методом setIcon()
+
+menu.add(Menu.NONE, IDM_OPEN, Menu.NONE, "Открыть")
+	.setIcon(R.drawable.icon_menu_open);
+Напомним еще раз, что значки можно добавить только к шести пунктам меню (или к пяти, если пунктов больше шести).
+Метод onCreateOptionsMenu вызывается системой только один раз при создании меню. Если вам требуется обновить меню во время работы программы, то используйте метод обратного вызова onPrepareOptionsMenu().
+При выборе пункта меню вызывается метод onOptionsItemSelected, который передает объект MenuItem - пункт меню, выбранный пользователем. При помощи метода getItemId можно получить идентификатор выбранного пункта меню. После идентификации пункта меню можно написать код для обработки события выбора меню:
+
+public boolean onOptionsItemSelected(MenuItem item)
+{
+	switсh (item.getItemId())
+	case IDM_OPEN:
+		return true;
+	case IDM_SAVE:
+		return true;
+		
+	return false;	
+}
+Горячие клавиши
+Также можно задавать горячие клавиши для быстрого доступа, используя символы клавиатуры, при помощи нескольких методов:
+* setAlphabeticShortcut(char) - добавляет символ
+* setNumericShortcut(int) - добавляет число
+* setShortcut(char, int) - добавляет комбинацию символа и числа
+Например, если задать горячую клавишу setAlphabeticShortcut('q');, то при открытии меню (или при удерживании клавиши MENU) нажатие клавиши Q выберет данный пункт меню. Эта горячая клавиша (или сочетание клавиш) будет показана как подсказка, отображающая ниже имени пункта меню. В новых клавиатурах есть отдельная клавиша Ctrl, которая работает также, как на обычных клавиатурах.
+Горячие клавиши можно создать и через XML: android:alphabeticShortcut="c".
+Обрабатывать нажатия можно через метод активности onKeyShortcut():
+
+@Override
+public boolean onKeyShortcut(int keyCode, KeyEvent event) {
+	switch (keyCode) {
+		case KeyEvent.KEYCODE_R:
+			Toast.makeText(this, "Reply", Toast.LENGTH_SHORT).show();
+			return true;
+		default:
+			return super.onKeyShortcut(keyCode, event);
+	}
+}
+Создание подменю
+Подменю можно добавить в любое меню, кроме другого подменю. Подменю создается в методе обратного вызова onCreateOptionsMenu() с помощью метода addSubMenu(), который возвращает объект SubMenu. В объект SubMenu можно добавить дополнительные пункты к этому меню, используя метод add(). Например:
+
+public static final int IDM_HELP = 101; 
+public static final int IDM_NEW = 201; 
+public static final int IDM_OPEN = 202; 
+public static final int IDM_SAVE = 203; 
+public static final int IDM_CUT = 301; 
+public static final int IDM_COPY = 302; 
+public static final int IDM_PASTE = 303; 
+
+@Override 
+public boolean onCreateOptionsMenu(Menu menu) 
+{
+	SubMenu subMenuFile = menu.addSubMenu("Файл");
+	subMenuFile.add(Menu.NONE, IDM_NEW, Menu.NONE, "Новый");
+	subMenuFile.add(Menu.NONE, IDM_OPEN, Menu.NONE, "Открыть");
+	subMenuFile.add(Menu.NONE, IDM_SAVE, Menu.NONE, "Сохранить");
+	SubMenu subMenuEdit = menu.addSubMenu("Правка");
+	subMenuEdit.add(Menu.NONE, IDM_CUT, Menu.NONE, "Вырезать");
+	subMenuEdit.add(Menu.NONE, IDM_COPY, Menu.NONE, "Копировать");
+	subMenuEdit.add(Menu.NONE, IDM_PASTE, Menu.NONE, "Вставить");
+	menu.add(Menu.NONE, IDM_HELP, Menu.NONE, "Справка");
+	return super.onCreateOptionsMenu(menu); 
+}
+
+@Override 
+public boolean onOptionsItemSelected(MenuItem item) 
+{
+	CharSequence message;
+
+	switch (item.getItemId()) {
+	case IDM_NEW:
+		message = "Выбран пункт Новый";
+		break;
+	case IDM_OPEN:
+		message = "Выбран пункт Открыть";
+		break;
+	case IDM_SAVE:
+		message = "Выбран пункт Сохранить";
+		break;
+	case IDM_CUT:
+		message = "Выбран пункт Вырезать";
+		break;
+	case IDM_COPY:
+		message = "Выбран пункт Копировать";
+		break;
+	case IDM_PASTE:
+		message = "Выбран пункт Вставить";
+		break;
+	case IDM_HELP:
+		message = "Выбран пункт Справка";
+		break;
+	default:
+		return false;
+	}
+	// выводим уведомление о выбранном пункте меню
+	Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
+
+	toast.setGravity(Gravity.CENTER, 0, 0);
+	toast.show();
+	return true;
+}
+Теперь при выборе пункта меню появится еще одно окно с подменю. Попробуйте сами.
+Добавление флажков и переключателей
+В пункты меню возможно добавление флажков или переключателей. Чтобы добавить флажок или переключатель для отдельного элемента меню, необходимо использовать метод setCheckable():
+
+MenuItem item = menu.add(0, IDM_FORMAT_BOLD, 0, "Bold");
+item.setCheckable(true); 
+Если есть необходимость добавить несколько пунктов меню с флажками или переключателями, то можно объединить их в группы меню, создав отдельный идентификатор. Пункт меню добавляется в группу через метод add(), передав ему в качестве первого параметра идентификатор группы меню. Допустим, мы объявили идентификаторы для группы меню Цвет и элементов меню для установки цвета:
+
+public static final int IDM_COLOR_GROUP = 400; 
+public static final int IDM_COLOR_RED = 401; 
+public static final int IDM_COLOR_GREEN = 402; 
+public static final int IDM_COLOR_BLUE = 403; 
+Теперь для создания группы меню с флажками нужно назначить идентификатор группы на каждый пункт меню и вызвать метод setGroupCheckable() для всей группы (этом случае нет необходимости вызывать метод setCheckable() для каждого пункта меню):
+
+SubMenu subMenuColor = menu.addSubMenu("Цвет"); 
+subMenuColor.add(IDM_COLOR_GROUP, IDM_COLOR_RED, Menu.NONE, "Красный"); 
+subMenuColor.add(IDM_COLOR_GROUP, IDM_COLOR_GREEN, Menu.NONE,"Зеленый"); 
+subMenuColor.add(IDM_COLOR_GROUP, IDM_COLOR_BLUE, Menu.NONE, "Синий"); 
+subMenuColor.setGroupCheckable(IDM_COLOR_GROUP, true, false); 
+У метода setGroupCheckable() три параметра:
+* первый параметр — идентификатор группы меню;
+* второй параметр — true, если в группе разрешены переключатели или флажки;
+* третий параметр — устанавливает единственный (true) или множественный (false) выбор пунктов меню. Этот параметр фактически определяет внешний вид меню — это будет меню с переключателями или флажками.
+Для управления состоянием флажков и переключателей в обработчике события выбора пункта меню нужно написать следующее:
+
+@Override 
+public boolean onOptionsItemSelected(MenuItem item) 
+{
+	CharSequence message;
+
+	switch (item.getItemId()) {
+	...
+	case IDM_COLOR_RED: 
+		// инвертируем состояние флажка 
+		item.setChecked(!item.isChecked()); 
+		message = "Красный цвет";
+		break;
+
+	default:
+		return false;
+}
+Запустите проект, вызовите меню и выберите пункт меню Цвет. У вас появится подменю с тремя пунктами (Красный, Зеленый, Синий) в виде флажков. Состояние флажков и переключателей обрабатывается в коде программы и сохраняется при повторных вызовах меню.
+Можно сразу назначить намерение выбранному пункту меню через метод setIntent(), которое сработает при нажатии этого пункта, если данное событие не было перехвачено обработчиками onMenuItemClickListener (устар.) или onOptionsItemSelected. Сработав, намерение передается в метод startActivity.
+
+menuItem.setIntent(new Intent(this, MyOtherActivity.class));
+Программное открытие или закрытие меню
+Если вам по каким-то причинам нужно программно открыть меню (например, в демонстрационных целях), то используйте метод openOptionsMenu():
+
+openOptionsMenu();
+Для программного закрытия меню используйте метод closeOptionsMenu(), впрочем у меня повторный вызов метода openOptionsMenu() также закрывает меню.
+Программное удаление пункта меню
+Допустим, мы определили пункт меню в xml-файле:
+
+<item
+	android:id="@+id/action_dog"
+	android:orderInCategory="100"
+	android:showAsAction="never"
+	android:title="Пёсик"/>
+Чтобы удалить явно лишний пункт меню из нашей программы о котах, нужно получить доступ к пункту меню через метод findItem() и сделать его невидимым. Ссылку на объект Menu нужно передать в метод onCreateOptionsMenu, чтобы программа узнала об изменении состава меню.
+
+// переменная класса
+Menu menu;
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	super.onCreateOptionsMenu(menu);
+	// передаём ссылку на наш объект
+	this.menu = menu;
+	getMenuInflater().inflate(R.menu.test, menu);
+	return true;
+}
+
+// щелчок кнопки
+public void onClick(View v) {
+	if (menu != null) {
+		// находим нужный элемент
+		MenuItem item_dog = menu.findItem(R.id.action_dog);
+		// делаем его невидимым
+		item_dog.setVisible(false);
+	}
+}
+Но у данного решения есть недостаток, если мы повернём экран, то активность пересоздатся и удалённое меню снова появится. Как же нам избавиться от сранного пёсика?
+Надо запомнить состояние пункта меню и сохранить его в объекте типа Bundle в методе onSaveInstanceState, а в методе onCreate() извлечь сохранённое состояние и передать методу onPrepareOptionsMenu, который вызывается перед показом меню на экране:
+
+package ru.alexanderklimov.test;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
+public class TestActivity extends Activity {
+	Menu menu;
+	Boolean savedMenuDogIsVisible;
+	final static String KEY_MENU_DOG = "KEY_MENU_DOG";
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_test);
+
+		// извлекаем данные о видимости пункта меню
+		if (savedInstanceState != null) {
+			savedMenuDogIsVisible = savedInstanceState.getBoolean(KEY_MENU_DOG,
+					true);
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		this.menu = menu;
+		getMenuInflater().inflate(R.menu.test, menu);
+		return true;
+	}
+
+	public void onClick(View v) {
+
+		if (menu != null) {
+			MenuItem item_dog = menu.findItem(R.id.action_dog);
+			// прячем пункт меню
+			item_dog.setVisible(false);
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+
+		if (menu != null) {
+			MenuItem item_dog = menu.findItem(R.id.action_dog);
+			// сохраняем текущее состояние пункта меню - true или false
+			outState.putBoolean(KEY_MENU_DOG, item_dog.isVisible());
+		}
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+
+		if (savedMenuDogIsVisible != null) {
+			MenuItem item_dog = menu.findItem(R.id.action_dog);
+			// перед выводом на экран узнаём нужное состоятние пункта меню
+			item_dog.setVisible(savedMenuDogIsVisible);
+		}
+		return super.onPrepareOptionsMenu(menu);
+	}
+}
+Определить наличие кнопки Menu
+На старых устройствах использовалась реальная кнопка Menu. В новых версиях Android меню убрали в ActionBar и её наличие в виде отдельной кнопки стало необязательным. Но многие производители по-прежнему выпускают телефоны с кнопкой для меню. Чтобы определить, есть ли такая кнопка, в Android 14 добавили новый метод, который позволит определить наличие этой кнопки.
+
+if (Build.VERSION.SDK_INT <= 10
+		|| (Build.VERSION.SDK_INT >= 14 && ViewConfiguration.get(this)
+				.hasPermanentMenuKey())) {
+	// menu key is present
+	Toast.makeText(this, "Кнопка Menu есть", Toast.LENGTH_LONG).show();
+} else {
+	// No menu key
+	Toast.makeText(this, "Кнопки Menu нет", Toast.LENGTH_LONG).show();
+}
+Разметка для меню
+В современных устройствах меню является частью ActionBar. И вы можете настроить разметку меню через XML.
+Допустим, вы выбрали такой вариант:
+
+<item
+	android:id="@+id/action_new"
+	android:actionLayout="@layout/action_layout"
+	android:orderInCategory="100"
+	android:showAsAction="always|withText"
+	android:title="Новый"/>
+В атрибуте showAsAction не используйте значение never, иначе разметку не увидите. Сама разметка задана через атрибут actionLayout. Код для разметки:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="horizontal" >
+
+	<ImageButton
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:contentDescription="Custom button!"
+		android:scaleType="fitCenter"
+		android:src="@drawable/blue" />
+
+</LinearLayout>
+Меню в фрагментах
+Меню может быть не только частью активности, но и частью фрагмента. Принцип работы практически не отличается. У фрагмента есть соответствующий метод.
+
+@Override
+public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+	super.onCreateOptionsMenu(menu, inflater);
+	inflater.inflate(R.menu.fragment_crime_list, menu);
+}
+FragmentManager отвечает за вызов onCreateOptionsMenu() при получении активностью обратного вызова onCreateOptionsMenu() от системы. Вы должны явно сообщить менеджеру FragmentManager, что фрагмент должен получить вызов onCreateOptionsMenu(). Для этого вызывается метод setHasOptionsMenu():
+
+// В коде фрагмента
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setHasOptionsMenu(true);
+	getActivity().setTitle(R.string.cat);
+	...
+}
+
+
+
