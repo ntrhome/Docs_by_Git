@@ -1,0 +1,44 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-26T19:15:02+03:00
+
+====== this book ======
+Created Среда 26 июня 2019
+
+Sans
+
+= = = Links:
+**link            : ссылка на состраницу, если не найдено, ищется надстраница**
+**link:link       : ссылка от состраницы, не найдена - от надстраницы**
+**+link		: ссылка на субстраницу**
+Zim:link:link   : прямая ссылка от корня книги
+/link 		: are considered links to external files
+?link           : are interwiki links, see below.
+
+Например вы на странице 
+		Zim:Examples:Linking:Relative
+тогда чтоб сослаться на
+		Zim:Examples:Linking:Absolute
+достаточно указать
+		Absolute
+также будет найдена надстраница 
+		Examples
+так как она вверх по дереву, 
+а вот чтоб спуститься потом в другую ветвь, нужно указать
+		Examples:Calendar
+тогда вы свяжетесь со страницей
+		Zim:Examples:Calendar
+
+
+**В Правка / Шаблоны - добавить в шаблон Wiki -> Default (в конце):**
+<<
+= = = = = = = = = = = = = = = = = = = = = 
+
+- - - - - - - - - - - - - 
+
+- - - - - - - - - - - - - 
+
+= = = = = = = = = = = = = = = = = = = = = 
+
+
+>>
