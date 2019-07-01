@@ -7,6 +7,8 @@ Created вівторок 25 червень 2019
 
 ====== Android - Основы создания приложений ======
 
+**The user interface for an Android app is built using a hierarchy of layouts (ViewGroup objects) and widgets (View objects). Layouts are containers that control how their child views are positioned on the screen. Widgets are UI components such as buttons and text boxes.**
+
 https://developer.android.com/guide/components/fundamentals
 
 Компоненты приложения (4):

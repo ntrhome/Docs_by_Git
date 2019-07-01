@@ -5,6 +5,11 @@ Creation-Date: 2019-06-25T14:37:15+03:00
 ====== Home ======
 Created вівторок 25 червень 2019
 
+https://developer.android.com/training/basics/firstapp/building-ui?hl=ru
+= = = = = = = = = = = = = = = = = **SCRUM:**
+http://scrum.org.ua/wp-content/uploads/2008/12/scrum_xp-from-the-trenches-rus-final.pdf
+scrum_xp-from-the-trenches-rus-final.pdf
+= = = = = = = = = = = = = = = = =
 mailsearchbot
 start android - youtube
 = = = = = = = = = = = = = = = = =
@@ -21,3 +26,11 @@ git push -u github master (1й раз - установить связь межд
 git push (дальше пользуемся этим)
 
 = = = = = = = = = = = = = = = = =
+Сторонние библиотеки:
+- JavaFX
+- Swing
+- Retrofit (internet) https://habr.com/ru/post/314028/
+
+= = = = = = = = = = = = = = = = =
+
+
