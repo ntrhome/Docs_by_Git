@@ -1,0 +1,76 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-10T00:54:23+03:00
+
+====== Common ======
+Created Понедельник 10 июня 2019
+
+- - - - - - - - - - - - - - - -
+**Ключевые слова Java (61):**
+_
+abstract
+assert
+boolean
+break
+byte
+case
+catch
+char
+class
+const (не применяется)
+continue
+default
+do
+double
+else
+enum
+exports
+extende
+final
+finally
+float
+for
+goto (не применяется)
+if
+implements
+import
+instanceof
+int
+interface
+long
+module
+native
+new
+open
+opens
+package
+private
+protected
+provides
+public
+requires
+return
+short
+static
+strictfp
+super
+switch
+synchronized
+this
+throw
+throws
+to
+transient
+transitive
+try
+uses
+void
+volatile
+while
+with
+	а также:
+false
+true
+null
+- - - - - - - - - - - - - - - -
+

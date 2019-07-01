@@ -1,0 +1,28 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-10T00:53:38+03:00
+
+====== VS Code ======
+Created Понедельник 10 июня 2019
+
+**Visual Studio Code**
+
+https://code.visualstudio.com/docs/java/java-tutorial
+
+**Start work with Java in VS Code:**
+	In VS Code install the Java Extension Pack - in Quick Open (Ctrl+P):
+			ext install vscjava.vscode-java-pack
+	After it close VS Code.
+
+**New Java-project:**
+	**- by "code .":**
+			1. In Terminal create folder for java-project and start VS Code from it:
+						$ mkdir hello
+						$ cd hello
+						$ code .
+			2. In VS Code create a new file - Hello.java. 
+					When you open that file, the Java Language Server will automatically be activated as you can see a rocket icon on the right of the Status bar. When it finishes loading, you will see a thumbs up icon instead.
+
+	**- by Command Palette (Ctrl+Shift+P):**
+	https://code.visualstudio.com/docs/java/java-project
+			(Ctrl+Shift+P) Java: Create Java Project

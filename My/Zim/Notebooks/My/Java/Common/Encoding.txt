@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-10T22:50:19+03:00
+
+====== Encoding ======
+Created Понедельник 10 июня 2019
+
+В Java по умолчанию выбирается кодировка UTF-16.
+
+Для изменения:
+	- в начало программы (класса?):
+		System.setOut(new PrintStrearn(System.out, true, "ср866"));
+	- или загрузчику:
+		java -Dconsole.encoding=cp866 имя_запускаемого_класса
+

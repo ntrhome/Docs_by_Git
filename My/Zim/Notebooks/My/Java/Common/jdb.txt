@@ -1,0 +1,114 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-21T22:07:03+03:00
+
+====== jdb ======
+Created Пятница 21 июня 2019
+
+= = = = = = = = = = = = = =
+
+**Отладчик jdb: **https://habr.com/ru/post/125210/
+
+Компилируем с ключом -g, чтобы у отладчика была информация.
+		javac -g -sourcepath ./src -d bin src/com/my/helloworld/HelloWorld.java
+Запускаем отладчик
+		jdb -classpath bin -sourcepath src com.my.helloworld.HelloWorld
+				Initializing jdb ...
+				>
+Отладчик запустил свой внутренний терминал, и там можно help.
+				> help
+Указываем точку прерывания на 9 строке в классе Calculator:
+				> stop at com.my.helloworld.Calculator:9
+А можно и run - запускаем на выполнение.
+				> run
+Чтобы соориентироваться можно вывести кусок исходного кода, где в данный момент находится курссор.
+				main[1] list
+Узнаем, что из себя представляет переменная а.
+				main[1] print a
+				main[1] dump a
+				main[1] stop at com.my.helloworld.operation.Adder:19
+Продолжим исполнение.
+				main[1] cont
+				main[1] list
+				main[1] print sum
+				main[1] print b
+Выполним код в текущей строке и увидим, что sum стала равняться 2.
+				main[1] step
+				main[1] print sum
+Поднимемся из класса Adder в вызвавший его класс Calculator.
+				main[1] step up
+Удаляем точку прерывания
+				main[1] clear com.qwertovsky.helloworld.operation.Adder:19
+				main[1] step
+Можно избежать захода в методы, используя команду next.
+				main[1] next
+Проверяем значение выражения и завершаем выполнение.
+				main[1] eval adder.getSum()
+				main[1] cont
+- - - - -
+Хорошо бы протестировать юниттестом - см. стать., там всколзь, но толчек. Кладется в папку test.
+- - - - - 
+Создадим библиотеку Calculator:
+Компилируем
+				cd Calculator
+				javac -sourcepath src -d bin 
+						src/com/my/calculator/Calculator.java
+Делаем архив jar
+				jar cvf calculator.jar -C bin .
+				С помощью ключа -C мы запустили программу в каталоге bin.
+Узнать, что у библиотеки внутри:
+				- Можно распаковать архив zip-распаковщиком и посмотреть, какие классы есть в библиотеке. Информацию о любом классе можно получить с помощью дизассемблера javap.
+						javap -c -classpath calculator.jar 
+									com.my.calculator.Calculator
+				Выдается довольно нетривиальный текст, можно разобраться.
+				Без ключа -c выдаст только список переменных и методов (а если использовать -private, то всех).
+						javap -private  -classpath calculator.jar
+								com.my.calculator.operation.Adder
+Лучше снабдить библиотеку документацией - см. статью - складываем в папку doc, команда:
+				javadoc -d doc -charset utf-8  -sourcepath src -author 
+						-subpackages com.my.calculator
+Можно подписать jar-архив (свою библиотеку) цифровой подписью, на помощь придут keytool и jarsigner.
+Генерируем подпись:
+				keytool -genkey -keyalg rsa -keysize 2048 -alias my -keystore path/to/bubibo.keystore
+Генерируем Certificate Signing Request (CSR)
+				keytool -certreq -file path/to/my.crt -alias my -keystore path/to/bubibo.keystore
+Содержимое полученного файла отправляем в центр сертификации. От центра сертификации получаем сертификат. Сохраняем его в файле (например, qwertokey.cer) и импортируем в хранилище
+				keytool -import -trustcacerts -keystore path/to/qwert.keystore -alias my -file path/to/my.cer
+Подписываем jar-архив
+				jarsigner -keystore path/to/qwerto.keystore calculator.jar qwertokey
+Файл qwertokey.cer отправляем всем, кто хочет проверить архив. Проверяется он так
+				jarsigner -verify -verbose -certs -keystore path/to/qwerto.keystore calculator.jar
+Использование библиотеки
+Для использования нужно будет добавить строку:
+		import com.my.calculator.Calculator;
+Есть программа HelloWorld, которая использует библиотечный класс Calculator. Чтобы скомпилировать и запустить программу, нужно присоединить библиотеку.
+		Компилируем
+				cd HelloWorld
+				javac -sourcepath src -d bin -classpath path/to/calculator.jar src/com/my/helloworld/HelloWorld.java
+		Запускаем
+				java -classpath bin:path/to/calculator.jar com.my.helloworld.HelloWorld
+Собираем программу. Это можно сделать по-разному.
+		Первый способ
+		Второй способ
+		Третий способ
+		см. статью
+Запуск исполняемого jar-файла
+Файл calculator.jar исполняемым не является. А вот helloworld.jar можно запустить.
+Если архив был создан первыми двумя способами, то рядом с ним в одном каталоге должна находится папка lib с файлом calculator.jar. Такие ограничения из-за того, что в манифесте в class-path указан путь относительно исполняемого файла.
+		cd Calculator
+		ls ../HelloWorld/lib 
+				calculator.jar
+		java -jar ../HelloWorld/helloworld.jar
+При использовании третьего способа нужные библиотеки включаются в исполняемый файл. Держать рядом нужные библиотеки не требуется. Запускается аналогично.
+		java -jar ../HelloWorld/helloworld.jar
+Как быть с приложениями JavaEE ... см. статью
+
+https://docs.oracle.com/javase/6/docs/technotes/tools/windows/javac.html
+https://docs.oracle.com/javase/6/docs/technotes/tools/windows/java.html
+https://docs.oracle.com/javase/6/docs/technotes/tools/windows/jdb.html
+...
+
+- - - - - - - - - -
+- - - - - - - - - -
+= = = = = = = = = = = = = =
+- - - - - - - - - -

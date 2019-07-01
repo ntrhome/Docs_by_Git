@@ -1,0 +1,34 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-16T19:39:50+03:00
+
+====== Android ======
+Created Воскресенье 16 июня 2019
+
+**Это временная страница - то, что попадается ценного, чтоб не забыть.**
+- - - - - - - - - - - - - - - - - - -
+GoogleDrive for Android - материалы от Алексея:
+https://drive.google.com/drive/folders/1tYtB_p0UWaavxAA2JjBZ-PW0SVlm5Q16
+- - - - - - - - - - - - - - - - - - -
+**Genymotion** - альтернативная ВМ Андроид:
+http://v-androide.com/obzory/emuljatory-obzory/genymotion-kak-ispolzovat-emulyator.html
+- - - - - - - - - - - - - - - - - - -
+**Android Studio**
+http://qaru.site/questions/212/why-is-the-android-emulator-so-slow-how-can-we-speed-up-the-android-emulator
+	http://qaru.site/questions/2194744/androidios-peer-to-peer-architecture (-> https://developers.google.com/nearby/messages/overview)
+- - - - - - - - - - - - - - - - - - -
+**Цвета гугл-организованные** по палитрам, практично, используемо:
+http://www.google.com/design/spec/style/color.html# ->
+https://material.io/design/color/#
+- - - - - - - - - - - - - - - - - - -
+**Documentation API**:
+https://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType
+- - - - - - - - - - - - - - - - - - -
+Простое переключение на другой экран:
+http://developer.alexanderklimov.ru/android/activity.php
+- - - - - - - - - - - - - - - - - - -
+
+- - - - - - - - - - - - - - - - - - -
+
+
+

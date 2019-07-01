@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-10T22:40:51+03:00
+
+====== New in Java ======
+Created Понедельник 10 июня 2019
+
+new in Java (http://openjdk.java.net/jeps/0):
+	- switch String
+	- .jar
+	- lambda
+	- JavaFX вместо Swing (GDI)
+	- модули, позволяющие указы­вать взаимосвязи и зависимости в коде, а также расширяющие воз­можности управления доступом в Java.
+	- JShell
+	- Java Web Staгt - вместо аплетов
+	- var (var list = new ArrayList<String>();)
+	- можно компилить и запускать с java (без javac), причем параметры слева от задаваемого .java-файла передаются компилятору (например, путь к классам) и лаунчеру, а справа - эта параметры приложения:
+		java -classpath / home / foo / java Hello.java Bonjour
+	эквивалентна таким строкам:
+		javac -classpath / home / foo / java Hello.java
+		java -classpath / home / foo / java Hello Bonjour
+	- микротесты производительности кода (см. Microbenchmark, фреймворк JMH)
+	- дополнительная форма switch без бреак: case THUR, SAT -> f(8); можно поиграться с новым switch (предварительно установив флаг --enable-preview)
+	- 
+

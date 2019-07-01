@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-17T23:07:16+03:00
+
+====== try ======
+Created Понедельник 17 июня 2019
+
+Исключения в Java, Часть I (try-catch-throws-finally) - https://habr.com/ru/company/golovachcourses/blog/223821/
+
+
+
+
+
+
