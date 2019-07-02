@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-02T10:52:10+03:00
+
+====== Activities ======
+Created вівторок 02 липень 2019
+
+https://developer.android.com/guide/components/activities.html?hl=ru
+https://developer.android.com/reference/android/app/Activity.html?hl=ru
+

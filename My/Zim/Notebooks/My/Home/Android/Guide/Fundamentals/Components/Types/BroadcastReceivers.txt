@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-02T10:52:39+03:00
+
+====== BroadcastReceivers ======
+Created вівторок 02 липень 2019
+
+
+= https://developer.android.com/guide/components/broadcasts
+= https://developer.android.com/reference/android/content/BroadcastReceiver.html?hl=ru
+= https://developer.android.com/reference/android/content/Intent.html?hl=ru
+
+уведомления = https://developer.android.com/guide/topics/ui/notifiers/notifications.html?hl=ru
+

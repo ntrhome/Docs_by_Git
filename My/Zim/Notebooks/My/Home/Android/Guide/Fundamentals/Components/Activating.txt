@@ -1,0 +1,46 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-02T11:46:33+03:00
+
+====== Activating ======
+Created вівторок 02 липень 2019
+
+**Активация компонентов - Activating components = **https://developer.android.com/guide/components/fundamentals?hl=ru#ActivatingComponents
+
+Приложение не может напрямую вызывать компонент другого приложения. Это делает сама система Android. Чтобы вызвать компонент в другом приложении, необходимо сообщить системе о таком своем намерении (создать Intent). 
+
+Для запуска компонента приложения системе Android необходимо знать, что компонент существует - см. [[Manifest]].
+
+Посредством Интент компонент запускается, либо (для запущенного) инициируется новое действие.
+
+Если вызов компонента предполагает возврат результата, то результат также отправляется посредством Intent (например по запросу контакта будет возвращен URI - Uniform Resource Identifier – унифицированный идентификатор ресурса, указывающий на выбранный контакт).
+
+При сооздании объекта Intent делается описание запроса на активацию:
+- либо конкретного компонента (по указанию приложения и его компонента),
+- либо компонента конкретного типа (по описанию действия: "показать изображение" или "открыть веб-страницу"),
+соответственно, намерение Intent может быть явным или неявным.
+
+Принимается интент через Broadcast receivers (приемник вещания).
+
+Три из четырех типов компонентов активируются асинхронным сообщением, которое называется Intent (намерение):
+	**Activities** - передав объект Intent:
+			- - методу startActivity() = https://developer.android.com/reference/android/content/Context.html?hl=ru#startActivity(android.content.Intent) или 
+			- - startActivityForResult() если требуется, чтобы операция вернула результат = https://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent,%20int)
+	**Services** - __с Android 5.0 (API 21) вы можете использовать JobScheduler__ 
+= https://developer.android.com/reference/android/app/job/JobScheduler.html
+			А для ранних версий - передав объект Intent:
+			- - методу startService() = https://developer.android.com/reference/android/content/Context.html?hl=ru#startService(android.content.Intent)
+			- - либо можно установить привязку к службе, передав объектIntent методу bindService() = https://developer.android.com/reference/android/content/Context.html?hl=ru#bindService(android.content.Intent,%20android.content.ServiceConnection,%20int)
+	**Broadcast receivers** - инициировать рассылку сообщений, передав объект Intent таким методам, как:
+			- - sendBroadcast() = https://developer.android.com/reference/android/content/Context.html#sendBroadcast(android.content.Intent)
+			- - sendOrderedBroadcast() = https://developer.android.com/reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent,%20java.lang.String)
+			- - sendStickyBroadcast() = https://developer.android.com/reference/android/content/Context.html#sendStickyBroadcast(android.content.Intent)
+Четвертый тип компонента:
+	**Content providers**
+			__сообщениями Intent не активируются.__ Они активируются по запросу-методу query() = https://developer.android.com/reference/android/content/ContentProvider.html?hl=ru#query(android.net.Uri,%20java.lang.String%5B%5D,%20android.os.Bundle,%20android.os.CancellationSignal) объекта ContentResolver = https://developer.android.com/reference/android/content/ContentResolver.html?hl=ru. 
+
+
+
+
+
+

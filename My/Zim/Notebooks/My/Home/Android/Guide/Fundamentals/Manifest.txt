@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-02T12:32:12+03:00
+
+====== Manifest ======
+Created вівторок 02 липень 2019
+
+https://developer.android.com/guide/components/fundamentals?hl=ru#Manifest
+https://developer.android.com/guide/topics/manifest/manifest-intro.html?hl=ru
+
+Для запуска компонента приложения системе Android необходимо знать, что компонент существует (не объявленые в манифесте не могут быть запущены). Для этого она читает манифест приложения - файл AndroidManifest.xml в корневой папке приложения, где должны быть объявлены все компоненты приложения.
+
+Только Broadcast receiver можно либо объявить в манифесте, либо создать динамически в коде (как объекты BroadcastReceiver = https://developer.android.com/reference/android/content/BroadcastReceiver.html?hl=ru) и зарегистрировать в системе путем вызова registerReceiver() = https://developer.android.com/reference/android/content/Context.html?hl=ru#registerReceiver(android.content.BroadcastReceiver,%20android.content.IntentFilter).
+
+Помимо объявления компонентов приложения, манифест служит и для других целей:
+	- имя пакета Java для приложения (уникальным идентификатором приложения);
+	- объявление требуемых разрешений, чтобы получить доступ к защищенным частям API-интерфейса и взаимодействовать с другими приложениями;
+	- объявляет разрешения, требуемые для взаимодействия с компонентами данного приложения (?);
+	- объявление минимального уровня API;
+	- объявление аппаратных и программных функций (например камеры, службы Bluetooth или сенсорного экрана);
+	- указание дополнительных библиотек API, которые необходимо подключить к приложению (отличные от API-интерфейсов платформы Android, например библиотеки Google Maps);
+	- описывает компоненты приложения - операции, службы, приемники широковещательных сообщений и поставщиков контента, из которых состоит приложение. Тут указаны имена классов, которые реализуют каждый компонент, и их возможности (указывает, например, какие сообщения Intent они могут принимать). На основании этих деклараций система Android может определить, что она может делать с помощью этого приложения;
+	- добавляет отладочную информацию (список классов Instrumentation = https://developer.android.com/reference/android/app/Instrumentation.html?hl=ru, которые при выполнении приложения предоставляют сведения о профиле и прочую информацию - удаляется перед публикацией приложения);
+	- определяет, в каких процессах будут размещаться компоненты приложения;
+	- и многое другое.
+
+**Структура файла манифеста** = https://developer.android.com/guide/topics/manifest/manifest-intro.html?hl=ru#filestruct
+
+**Объявление компонентов:**
+	<manifest>
+	   <application  ... = https://developer.android.com/guide/topics/manifest/application-element.html?hl=ru
+			<activity ...  = https://developer.android.com/guide/topics/manifest/activity-element.html?hl=ru > </activity>
+			<service ...   = https://developer.android.com/guide/topics/manifest/service-element.html?hl=ru  > </service>
+			<receiver ...  = https://developer.android.com/guide/topics/manifest/receiver-element.html?hl=ru > </receiver>
+			<provider ...  = https://developer.android.com/guide/topics/manifest/provider-element.html?hl=ru > </provider>
+				>
+	   </application>
+	</manifest>
+
+
+ 
+

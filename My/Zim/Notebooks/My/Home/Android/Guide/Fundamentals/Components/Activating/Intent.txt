@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-02T11:45:45+03:00
+
+====== Intent ======
+Created вівторок 02 липень 2019
+
+= https://developer.android.com/guide/components/intents-filters.html?hl=ru
+= https://developer.android.com/reference/android/content/Intent.html
+
+Более подробная информация об активации определенных компонентов также приведена в следующих документах: 
+= https://developer.android.com/guide/components/activities.html?hl=ru
+= https://developer.android.com/guide/components/services.html?hl=ru
+= https://developer.android.com/reference/android/content/BroadcastReceiver.html?hl=ru
+= https://developer.android.com/guide/topics/providers/content-providers.html?hl=ru
+

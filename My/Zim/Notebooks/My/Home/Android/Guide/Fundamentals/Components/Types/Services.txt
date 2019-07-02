@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-02T10:52:23+03:00
+
+====== Services ======
+Created вівторок 02 липень 2019
+
+= https://developer.android.com/guide/components/services.html?hl=ru
+= https://developer.android.com/reference/android/app/Service.html?hl=ru
+
