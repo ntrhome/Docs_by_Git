@@ -5,8 +5,9 @@ Creation-Date: 2019-07-02T12:32:12+03:00
 ====== Manifest ======
 Created вівторок 02 липень 2019
 
-https://developer.android.com/guide/components/fundamentals?hl=ru#Manifest
+[[https://developer.android.com/guide/components/fundamentals?hl=ru#Manifest|Тут начало.]] 
 https://developer.android.com/guide/topics/manifest/manifest-intro.html?hl=ru
+https://developer.android.com/guide/topics/manifest/manifest-intro.html
 
 Для запуска компонента приложения системе Android необходимо знать, что компонент существует (не объявленые в манифесте не могут быть запущены). Для этого она читает манифест приложения - файл AndroidManifest.xml в корневой папке приложения, где должны быть объявлены все компоненты приложения.
 
@@ -26,16 +27,72 @@ https://developer.android.com/guide/topics/manifest/manifest-intro.html?hl=ru
 
 **Структура файла манифеста** = https://developer.android.com/guide/topics/manifest/manifest-intro.html?hl=ru#filestruct
 
-**Объявление компонентов:**
+**Объявление компонентов (**[[https://developer.android.com/guide/components/fundamentals?hl=ru#DeclaringComponents|Тут начало]]**):**
 	<manifest>
-	   <application  ... = https://developer.android.com/guide/topics/manifest/application-element.html?hl=ru
-			<activity ...  = https://developer.android.com/guide/topics/manifest/activity-element.html?hl=ru > </activity>
-			<service ...   = https://developer.android.com/guide/topics/manifest/service-element.html?hl=ru  > </service>
-			<receiver ...  = https://developer.android.com/guide/topics/manifest/receiver-element.html?hl=ru > </receiver>
-			<provider ...  = https://developer.android.com/guide/topics/manifest/provider-element.html?hl=ru > </provider>
-				>
+	   <[[https://developer.android.com/guide/topics/manifest/application-element.html?hl=ru|application]] ...
+			<[[https://developer.android.com/guide/topics/manifest/activity-element.html?hl=ru|activity]] ... > </activity>
+			<[[https://developer.android.com/guide/topics/manifest/service-element.html?hl=ru|service]] ...  > </service>
+			<[[https://developer.android.com/guide/topics/manifest/receiver-element.html?hl=ru|receiver]] ... > </receiver>
+			<[[https://developer.android.com/guide/topics/manifest/provider-element.html?hl=ru|provider]] ... > </provider> 
+		>
 	   </application>
 	</manifest>
+
+= = = = = = = = = = = = = = = =
+
+**Соглашения о компонентах файла манифеста: **https://developer.android.com/guide/topics/manifest/manifest-intro.html?hl=ru#filec
+Ко всем элементам и атрибутам из файла манифеста применяется рад соглашений и правил:
+
+Элементы: Формально обязательными являются только элементы <manifest> и <application>.
+
+Атрибуты: Формально все атрибуты являются необязательными, однако без них манифест вряд ли выполнит свое предназначение. Атрибуты, которые вправду могут быть необязательными - это атрибуты со значениями по умолчанию, которые вас устраивают (подход - что будет, если атрибут не указать?).
+
+За исключением некоторых атрибутов корневого элемента <manifest> (Му - организующих сам манифест?), имена остальных начинаются с префикса android: - например, android:alwaysRetainTaskState.
+
+Объявление имен классов -  атрибут name: Многие элементы соответствуют объектам Java, в том числе элемент <application> и основные его компоненты - <activity>, <service>, <receiver>, <provider>.
+	<service android:name="com.example.project.SecretService" ... > ... </service>
+Можно укоротить - если первый символ точка, имя пакета приложения (атрибута package) добавится автоматически:
+	<manifest package="com.example.project" ...>
+	<application ...>
+		<service android:name=".SecretService" ... > ... </service> ...
+Если компонент (Му - подкласс) расположен в подпакете (например, в com.example.project.purchases), то нужно добавить путь подпакета: .purchases.PayActivity.
+__При запуске компонента Android создает экземпляр указанного в name класса / подкласса.__
+
+**Применение некоторых атрибутов в манифесте и особенности формы атрибута (**[[https://developer.android.com/guide/topics/manifest/manifest-intro.html|в англ.док. - больше]]**):**
+
+<intent-filter> - фильтр намерений - содержит набор функционала, который приложение предлагает обработать для системы. Когда какое-то приложение выдает намерение системе, система ищет компонент приложения, который может обработать это намерение, на основе объявлений фильтра намерений в файле манифеста каждого приложения. Система запускает экземпляр соответствующего компонента и передает объект Intent этому компоненту. Если более чем одно приложение может обрабатывать намерение, то пользователь может выбрать, какое приложение использовать. ([[https://developer.android.com/guide/components/fundamentals?hl=ru#DeclaringComponentCapabilities|Тут начало]]).
+Компонент приложения может иметь любое количество [[https://developer.android.com/guide/components/intents-filters.html|фильтров намерений]] (определенных с помощью элемента <intent-filter>), каждый из которых описывает различные возможности этого компонента.
+
+Несколько значений - если можно указать несколько значений, элемент почти всегда приводится повторно (вместо перечисления нескольких значений в одном элементе). Например, в фильтре Intent может быть перечислено несколько действий:
+<intent-filter . . . >
+	<action android:name="android.intent.action.EDIT" />
+	<action android:name="android.intent.action.INSERT" />
+	<action android:name="android.intent.action.DELETE" /> . . .
+</intent-filter>
+
+Значения атрибутов, указываемые с помощью ресурсов: Значения некоторых атрибутов могут быть, например, текстом который приложение отобразит на экране. Следовательно такое значение следует локализовать, поэтому они должны задаваться в ресурсе или теме. Значения ресурсов выражаются в следующем формате:
+		@[пакет:]тип/имя
+где имя пакета можно опустить, если ресурс находится в одном пакете с приложением, тип - это тип ресурса, например "string" или "drawable", а имя - это имя, определяющее ресурс. Например:
+		<activity android:icon="@drawable/smallPic" ... >
+Значения из темы выражаются схожим образом, только в начале у них идет "?", а не "@":
+		?[пакет:]тип/имя
+		
+Значения атрибутов, когда это строки: следует использовать двойную обратную косую черту ("\\") для выделения управляющей последовательности символов, — например "\\n" для новой строки или "\\uxxxx" для символа Юникода.
+
+<uses-permission> - права: Приложения должны запрашивать разрешение на доступ к конфиденциальным данным пользователя (таким как контакты и SMS) или к определенным системным функциям (таким как камера и доступ в Интернет). Каждое разрешение идентифицируется уникальным ярлыком. Например, приложение, которое должно отправлять SMS-сообщения, должно иметь следующую строку в манифесте:
+		<manifest ... >
+			<uses-permission android:name="android.permission.SEND_SMS"/> ...
+		</manifest>
+([[https://developer.android.com/guide/components/fundamentals?hl=ru|Тут начало]]). Начиная с Android 6.0 (уровень API 23), пользователь может одобрять или отклонять некоторые разрешения во время выполнения. Но независимо от того, какую версию Android поддерживает ваше приложение, вы должны объявить все запросы на разрешение с помощью элемента [[https://developer.android.com/guide/topics/manifest/uses-permission-element.html|<uses-permission>]] в манифесте. Ваше приложение также может защитить свои компоненты таким образом. It can use any of the permissions that are defined by Android, as listed in [[https://developer.android.com/reference/android/Manifest.permission.html|android.Manifest.permission]], or a permission that's declared in another app. Your app can also define its own permissions. A new permission is declared with the [[https://developer.android.com/guide/topics/manifest/permission-element.html|<permission>]] element. For more information, see the [[https://developer.android.com/guide/topics/permissions/overview.html|Permissions Overview]].
+
+[[https://developer.android.com/guide/topics/manifest/uses-feature-element.html|<uses-feature>]] -  to declare hardware and software features your app needs. ([[https://developer.android.com/guide/components/fundamentals?hl=ru#DeclaringRequirements|Тут начало]]).
+
+[[https://developer.android.com/guide/topics/manifest/uses-sdk-element.html|<uses-sdk>]] - мин. версия SDK.
+
+[[https://developer.android.com/guide/topics/manifest/uses-library-element.html?hl=ru|<uses-library>]] - Библиотеки - Каждое приложение связывается с используемой по умолчанию библиотекой Android, в которой имеются базовые пакеты для построения приложений (со стандартными классами, например Activity, Service, Intent, View, Button, Application, ContentProvider и так далее). Однако некоторые пакеты находятся в собственных библиотеках. Если ваше приложение использует код из одного из таких пакетов, оно должно в явном виде потребовать, чтобы его связали с этим пакетом. Файл манифеста должен содержать отдельный элемент <uses-library> для указания имени каждой библиотеки. (Имя библиотеки можно найти в документации по пакету.)
+
+
+
 
 
  

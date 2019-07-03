@@ -5,7 +5,7 @@ Creation-Date: 2019-07-02T10:05:13+03:00
 ====== Android ======
 Created вівторок 02 липень 2019
 
-stop - manifest -  https://developer.android.com/guide/topics/manifest/manifest-intro.html?hl=ru
+stop - res -  https://developer.android.com/guide/topics/resources/accessing-resources.html?hl=ru
 
 
 
