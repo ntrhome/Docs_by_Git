@@ -24,20 +24,20 @@ Created вівторок 02 липень 2019
 
 Три из четырех типов компонентов активируются асинхронным сообщением, которое называется Intent (намерение):
 	**Activities** - передав объект Intent:
-			- - методу startActivity() = https://developer.android.com/reference/android/content/Context.html?hl=ru#startActivity(android.content.Intent) или 
-			- - startActivityForResult() если требуется, чтобы операция вернула результат = https://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent,%20int)
-	**Services** - __с Android 5.0 (API 21) вы можете использовать JobScheduler__ 
-= https://developer.android.com/reference/android/app/job/JobScheduler.html
+			- - методу [[https://developer.android.com/reference/android/content/Context.html?hl=ru#startActivity(android.content.Intent)|startActivity()]] или 
+			- - [[https://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent,%20int)|startActivityForResult()]] если требуется, чтобы операция вернула результат.
+	**Services** - __с Android 5.0 (API 21) вы можете использовать __[[https://developer.android.com/reference/android/app/job/JobScheduler.html|JobScheduler]].
 			А для ранних версий - передав объект Intent:
-			- - методу startService() = https://developer.android.com/reference/android/content/Context.html?hl=ru#startService(android.content.Intent)
-			- - либо можно установить привязку к службе, передав объектIntent методу bindService() = https://developer.android.com/reference/android/content/Context.html?hl=ru#bindService(android.content.Intent,%20android.content.ServiceConnection,%20int)
+			- - методу [[https://developer.android.com/reference/android/content/Context.html?hl=ru#startService(android.content.Intent)|startService()]],
+			- - либо можно установить привязку к службе, передав объектIntent методу [[https://developer.android.com/reference/android/content/Context.html?hl=ru#bindService(android.content.Intent,%20android.content.ServiceConnection,%20int)|bindService()]].
 	**Broadcast receivers** - инициировать рассылку сообщений, передав объект Intent таким методам, как:
-			- - sendBroadcast() = https://developer.android.com/reference/android/content/Context.html#sendBroadcast(android.content.Intent)
-			- - sendOrderedBroadcast() = https://developer.android.com/reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent,%20java.lang.String)
-			- - sendStickyBroadcast() = https://developer.android.com/reference/android/content/Context.html#sendStickyBroadcast(android.content.Intent)
+			- - [[https://developer.android.com/reference/android/content/Context.html#sendBroadcast(android.content.Intent)|sendBroadcast()]],
+			- - [[https://developer.android.com/reference/android/content/Context.html#sendOrderedBroadcast(android.content.Intent,%20java.lang.String)|sendOrderedBroadcast()]],
+			- - [[https://developer.android.com/reference/android/content/Context.html#sendStickyBroadcast(android.content.Intent)|sendStickyBroadcast()]].
+			
 Четвертый тип компонента:
 	**Content providers**
-			__сообщениями Intent не активируются.__ Они активируются по запросу-методу query() = https://developer.android.com/reference/android/content/ContentProvider.html?hl=ru#query(android.net.Uri,%20java.lang.String%5B%5D,%20android.os.Bundle,%20android.os.CancellationSignal) объекта ContentResolver = https://developer.android.com/reference/android/content/ContentResolver.html?hl=ru. 
+			__сообщениями Intent не активируются.__ Они активируются по запросу-методу [[https://developer.android.com/reference/android/content/ContentProvider.html?hl=ru#query(android.net.Uri,%20java.lang.String%5B%5D,%20android.os.Bundle,%20android.os.CancellationSignal)|query()]] объекта [[https://developer.android.com/reference/android/content/ContentResolver.html?hl=ru|ContentResolver]]. 
 
 
 

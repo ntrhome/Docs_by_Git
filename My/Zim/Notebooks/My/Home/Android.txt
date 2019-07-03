@@ -19,7 +19,9 @@ Android Developers > Docs > Руководства = https://developer.android.c
 Android Developers > Docs > Руководства : layout = https://developer.android.com/guide/topics/ui/declaring-layout?hl=ru
 )
 
-
+= = = = = = = = = = = = = = = = = = = = **Android Studio**
+Пакеты эмуляции хранятся в /home/be/Android/Sdk/system-images/
+= = = = = = = = = = = = = = = = = = = =
 
 
 
