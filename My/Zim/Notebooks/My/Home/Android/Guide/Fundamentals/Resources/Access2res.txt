@@ -1,0 +1,41 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-04T12:08:16+03:00
+
+====== Access2res ======
+Created четвер 04 липень 2019
+
+[[https://developer.android.com/guide/topics/resources/providing-resources#Accessing|Применение ресурсов]] - идентификатор ID**:**
+Когда ресурс заведен в систему, доступ к нему осуществляется через идентификатор ресурса ID.
+Идентификаторы ресурсов обеспечивает класс R, который автоматически генерируется инструментом aapt (руками не править).
+R содержит ID всех ресурсов в /res. Для каждого типа ресурса R имеет свой подкласс:
+		- подкласс R.drawable для изображений,
+		- ...
+Для каждого ресурса существует статическая integer-переменная (именуемая например R.drawable.icon10), которая и является ID этого ресурса.
+Имя ID имеет вид [package_name.]R.[[https://developer.android.com/guide/topics/resources/available-resources.html|resource_type]].resource_name, где:
+- [package_name.] - требуется если ресурс в стороннем (для текущего приложения) пакете;
+- тип - это субкласс R: string, drawable, layout ...
+- имя: если это простое значение (например строка), то аттрибут в XML-файле - android:name; или например имя файла (без расширения).
+Есть два способа адресовать ID:
+- [[https://developer.android.com/guide/topics/resources/providing-resources#ResourcesFromCode|доступ в коде]]: используя статическую integer-переменную из субкласса R, например R.string.hello;
+- [[https://developer.android.com/guide/topics/resources/providing-resources#ResourcesFromXml|доступ в XML]]: используя специальный XML-синтаксис, например @string/hello.
+
+**Методы для применения екземпляра ресурса в коде:**
+1) классы имеют свои методы для установки свойств объекта, которым можно задать значение из ресурсов;
+		getWindow().setTitle(getResources().getText(R.string.main_title));
+		setContentView(R.layout.main_screen);
+		msgTextView.setText(R.string.hello_message);
+2) просто получить строку:
+		Log.d("mydbg", getString(R.string.res_txt_1));
+
+[[https://developer.android.com/guide/topics/resources/accessing-resources.html?hl=ru#ReferencesToThemeAttributes|Ссылка на атрибуты стиля]]
+Синтаксис ссылки на атрибут стиля - вместо @ указывается ?, а тип ресурса вообще необязательно указывать. Например:
+		?[package_name:][resource_type]resource_name
+
+[[https://developer.android.com/guide/topics/resources/accessing-resources.html?hl=ru#PlatformResources|Доступ к ресурсам платформы]]
+В Android есть стандартные ресурсы, например, стили, темы и макеты. Для доступа к ним надо указать в ссылке имя пакета android. Например:
+		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myarray));
+
+
+
+
