@@ -7,7 +7,7 @@ Created Вторник 02 июля 2019
 
 = = = = = = = = = = = = = = = = = = = = = 
 [[https://developer.android.com/studio/build/index.html#sourcesets|Набор исходных файлов проекта]]
-
+[[https://developer.android.com/studio/build/index.html#sourcesets|Android Studio - Configure your build]]
 
 
 - - - - - - - - - - - - - 
