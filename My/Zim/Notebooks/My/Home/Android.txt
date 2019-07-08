@@ -23,5 +23,7 @@ Android Developers > Docs > Руководства : layout = https://developer.
 Пакеты эмуляции хранятся в /home/be/Android/Sdk/system-images/
 = = = = = = = = = = = = = = = = = = = =
 
+https://developer.android.com/reference/android/support/constraint/packages?hl=ru
+
 
 

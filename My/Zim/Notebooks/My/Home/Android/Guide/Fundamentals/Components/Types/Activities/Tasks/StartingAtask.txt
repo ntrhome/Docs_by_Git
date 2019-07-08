@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-08T12:46:13+03:00
+
+====== StartingAtask ======
+Created понеділок 08 липень 2019
+
+[[https://developer.android.com/guide/components/tasks-and-back-stack.html#Starting|Запуск задачи]]
+
+Вы можете сделать активити точкой входа, назначая ей фильтр намерений со значением "android.intent.action.MAIN" в качестве указанного действия и "android.intent.category.LAUNCHER" в качестве указанной категории. Например:
+
+		<activity ... >
+			<intent-filter ... >
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			...
+		</activity>
+
+Фильтр намерений такого типа приводит к тому, что в средстве запуска приложения отображаются значок и метка для активити, что позволяет пользователю запускать активити и возвращаться в создавшую ее задачу в любой момент после ее запуска.
+
+. . . см. ссылку заголовка.
+
