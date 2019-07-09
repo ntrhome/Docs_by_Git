@@ -30,6 +30,9 @@ git push (дальше пользуемся этим)
 - JavaFX
 - Swing
 - Retrofit (internet) https://habr.com/ru/post/314028/
+__- Googlовские API !!!__ https://developers.google.com/android/guides/api-client
+
+
 
 = = = = = = = = = = = = = = = = =
 
