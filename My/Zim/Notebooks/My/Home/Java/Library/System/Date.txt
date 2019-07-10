@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-10T13:17:27+03:00
+
+====== Date ======
+Created середа 10 липень 2019
+
+import java.util.Date;
+
+https://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html
+
+
+- - - - -
+dTime  =  new  SimpleDateFormat("HH:mm:ss:SS");
+String  sTime =  (dTime.format(new java.util.Date())).toString();
+- - - - -
