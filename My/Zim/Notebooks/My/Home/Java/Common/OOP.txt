@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-16T16:35:39+03:00
+
+====== OOP ======
+Created Tuesday 16 July 2019
+
+**Object-oriented programming (OOP)** is a programming paradigm.
+- abstraction;
+- encapsulation;
+- inheritance;
+- polymorphism.
+
+
+
+
+
