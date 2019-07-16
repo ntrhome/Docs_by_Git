@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-16T10:58:29+03:00
+
+====== Layouts ======
+Created вівторок 16 липень 2019
+
+[[https://developer.android.com/guide/topics/ui/declaring-layout.html?hl=ru|Макет]] - [[https://developer.android.com/guide/topics/ui/declaring-layout.html|Layouts]]
+
+
+
+Android предоставляет несколько компонентов, которые содержат стандартный макет пользовательского интерфейса, где
+остается лишь определить содержимое. Каждый из этих компонентов пользовательского интерфейса содержит уникальный набор API, который описан в соответствующих документах, таких как [[https://developer.android.com/training/appbar?hl=ru|Строка действий]], [[https://developer.android.com/guide/topics/ui/dialogs.html?hl=ru|Диалоги]] и [[https://developer.android.com/guide/topics/ui/notifiers/notifications.html?hl=ru|Уведомления]] о состоянии.
+

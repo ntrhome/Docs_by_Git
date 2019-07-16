@@ -7,6 +7,7 @@ Created вівторок 02 липень 2019
 
 14.doc
 
+http://www.nnn.ru/ - куча открытых приложений
 
 stop - res -  https://developer.android.com/guide/topics/resources/accessing-resources.html?hl=ru
 
