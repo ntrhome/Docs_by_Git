@@ -1,0 +1,53 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-18T01:46:11+03:00
+
+====== tmp ======
+Created Thursday 18 July 2019
+
+package my.rundogctrl;
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+	public static void main(String[] args) {
+		int []dog = new int[12];
+		int id = 0;
+		dog[id] = 1;
+		Scanner scanner = new Scanner(System.in);
+		String s;
+		cycle:
+		while(true) {
+			s = scanner.next();
+			switch(s.charAt(0)) {
+			case 'A':
+			case 'a':
+				if(id > 0) {
+					dog[  id] = 0;
+					dog[--id] = 1;
+				}
+				System.out.println(Arrays.toString(dog));
+				break;
+			case 'D':
+			case 'd':
+				if(id < dog.length-1) {
+					dog[  id] = 0;
+					dog[++id] = 1;
+				}
+				System.out.println(Arrays.toString(dog));
+				break;
+			case 'Q':
+			case 'q':
+				break(cycle);
+			default:
+				System.out.println(">> [a] - go to left, [d] - go to right, [q] - quit, but you pressed: [" + s.charAt(0) + "]");
+				System.out.println(Arrays.toString(dog));
+				break;
+			}
+		}
+		System.out.println("Good luck!");
+		scanner.close();
+	}
+
+}
