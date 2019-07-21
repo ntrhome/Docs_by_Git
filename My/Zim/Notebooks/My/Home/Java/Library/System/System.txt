@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-10T23:38:05+03:00
+
+====== System ======
+Created Понедельник 10 июня 2019
+
+System.out.print();
+System.out.println();
+
+
+**System** - это final-класс из пакета java.lang.
+**out** - это переменная класса типа PrintStream, объявленная в классе System.
+**println** - метод класса PrintStream.
