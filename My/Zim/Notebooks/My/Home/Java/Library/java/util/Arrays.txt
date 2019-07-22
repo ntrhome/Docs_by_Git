@@ -1,0 +1,24 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-22T13:29:25+03:00
+
+====== Arrays ======
+Created понеділок 22 липень 2019
+
+Класс Arrays предназначен для работы с массивами, например:
+	copyOf − создание копии массива с новой длинной (усекается или расширяется);
+			Arrays.copyOf(origin_array, new_size);
+	copyOfRange − копирует часть массива;
+	toString − получить все элементы в виде одной строки;
+	deepToString() - получить многомерный массив в строку;
+	sort — сортирует массив методом quick sort;
+			Arrays.sort(a);
+			Arrays.sort(a,idFrom,idTo); - сотрирует часть массива
+	binarySearch − ищет элемент методом бинарного поиска;
+	fill − заполняет массив переданным значением;
+			Arrays.fill(type[], type value);
+			Arrays.fill(type[], int from, int to, type value);
+	equals − проверяет на идентичность массивы;
+	deepEquals − проверяет на равенство содержимого, а не ссылок, на произвольном уровне вложенности;
+	asList − возвращает массив как коллекцию.
+	

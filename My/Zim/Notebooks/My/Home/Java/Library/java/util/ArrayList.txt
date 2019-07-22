@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-22T13:59:22+03:00
+
+====== ArrayList ======
+Created понеділок 22 липень 2019
+
+Resizable-array implementation of the List interface.
