@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-23T16:37:40+03:00
+
+====== io ======
+Created вівторок 23 липень 2019
+
+https://docs.oracle.com/javase/7/docs/api/java/io/package-summary.html
+
+Потоки Reader и Writer - http://java-online.ru/java-reader.xhtml

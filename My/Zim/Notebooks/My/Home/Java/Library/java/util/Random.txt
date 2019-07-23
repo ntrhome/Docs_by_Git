@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-23T14:50:10+03:00
+
+====== Random ======
+Created вівторок 23 липень 2019
+
+**import java.util.Random; **//псевдослучайные числа
+
+Random rand = new Random();
+int r = (int) (100 * rand.nextDouble());
+
+
+nextDouble() - возвращает случайные числа в пределах от О.О до 1.О.
+
+
