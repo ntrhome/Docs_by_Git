@@ -5,6 +5,8 @@ Creation-Date: 2019-07-22T13:29:25+03:00
 ====== Arrays ======
 Created понеділок 22 липень 2019
 
+**import java.util.Arrays;**
+
 Класс Arrays предназначен для работы с массивами, например:
 	copyOf − создание копии массива с новой длинной (усекается или расширяется);
 			Arrays.copyOf(origin_array, new_size);

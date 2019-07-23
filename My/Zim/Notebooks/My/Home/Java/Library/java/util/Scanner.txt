@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-23T11:03:46+03:00
+
+====== Scanner ======
+Created Tuesday 23 July 2019
+
+
+**import java.util.Scanner;**
+
+	Scanner scanner = new Scanner(System.in);
+		String s = scanner.next();
+		//String s = scanner.nextLine(); //and other methods
+	switch(s.charAt(0)) {
+case 'A':
+...
+		scanner.close();
