@@ -5,7 +5,116 @@ Creation-Date: 2019-06-17T23:07:16+03:00
 ====== try ======
 Created Понедельник 17 июня 2019
 
-Исключения в Java, Часть I (try-catch-throws-finally) - https://habr.com/ru/company/golovachcourses/blog/223821/
+https://habr.com/ru/company/golovachcourses/blog/223821/
+
+(дальше - Механизм try - это "механизм исключений").
+
+**Ключевые слова:** 
+	try, 
+	catch, 
+	finally, 
+	throw, 
+	throws
+
+**"Швыряемыми" объектами могут быть только объекты-исключения - наследники java.lang.Throwable:**
+	Иерархия исключений:
+							 Object
+								 |
+							Throwable
+							/        \
+						Error     Exception
+											|
+									RuntimeException
+	Классы-исключения имеют свои поля и методы...
+	
+	"Магия" исключений заключается в том, что **catch, throw, throws** могут оперировать исключительно объектами-исключениями (либо их потомками).
+	("Магия" - некоторое поведение, на первый взгляд никак не отраженное в исходном коде).
+	Т.е. (1 строка - 1 пример):
+			- - ok:
+				public static void main(String[] args) throws Throwable {}
+				try {} catch (Throwable t) {}
+				throw new Error();
+				throw new RuntimeException(); //java.lang.RuntimeException (пригодится?)
+				throw new IllegalArgumentException("Negative sizes");
+			- - bad:
+				public static void main(String[] args) throws String {}
+				try {} catch (String s) {}
+				throw new String("Hello!");
+	
+	__И с null'ом тут разобраться, - типа швырнуть просто null нельзя, а вот швырнуть переменную-ссылку типа java.lang.Throwable, которая равна null, - можно. Понимаю так: просто null принимается как (Object) null, а надо (java.lang.Throwable) null.__
+	
+**Механизм try использует System.err, а не System.out:**
+	Поэтому помним, что System.out - buffered-поток вывода, а System.err - нет, и при выполнении кода:
+			public static void main(String[] args) {
+					System.out.println("sout");
+					throw new Error();
+			}
+	вполне может быть получен вывод, где err обогнало out:
+			>> RUNTIME ERROR: Exception in thread "main" java.lang.Error
+			>> sout
+	(И не пучим глаза при отладке).
+	(Сами пользуем System.err.println(...); )
+
+**Механизм try в некоторых случаях может позволять методу ничего не возвращат, хотя должен (например, когда возвращать в принципе нечего, а спец-значение "ничего" не применяется - прерываем выполнение):**
+		public static double f(double arg) {
+				if(...) 
+						throw new RuntimeException();
+				else {...}
+		}
+
+**Помнить, что швыряя исключение мы прерываем выполнение стека переходов, будет т.е. не:**
+	- to A
+		- - to B
+			(return;)
+		- - from B
+	- from A
+**а будет:**
+	- to A
+		- - to B
+			(throw new Error();)
+	- - - - - - -.
+
+**При этом catch останавливает вылет из стека переходов:**
+	- to A
+		- - to B
+			(throw new Error();)
+		- -  - - -
+		catch (Error e){...} //тут обрабатывааем, и из А выйдем уже культурно
+	- from A
+
+**Но не забываем:**
+	Catch - полиморфная конструкция, перехватывающая летящий объект любого исключения-подтипа, но если он лежит в иерархии наследования не раньше ловимого типа!!! (Т.е. например тип Exception поймает RuntimeException, но не поймает Throwable или Error). Иначе catch его не ловит, и вылет из стека переходов продолжается.
+	
+**Вложенный throw:**
+	Если в конструкции try будет снова встречен throw, то это новое исключение (не важно какое) опять таки прерывает выполнение блока try, и не имея к нему отношения должно быть обработано внешним try-catch (т.е. вылет из стека переходов продолжится).
+	
+**Конструкция try-catch:**
+	позволяет расположить несколько cach (будут обрабатываться сверху вниз), но придерживаясь правила: нельзя ловить передка, а потом потомка объекта-исключения - оба будут пойманы на предка (причем типы проверяются по динамическому связыванию - в рантайме).
+			try {
+			} catch (Exception e) { //нельзя: Exception поймает и Exception и RuntimeException
+			} catch (RuntimeException e) {//сюда дело бы никогда не дошло (но выдаст COMPILATION ERROR)
+			}
+	Брата после брата - ставить можно. Они разные.
+	
+**finally:**
+	finally-секция получает управление всегда как только завершилось выполнение try-блока, и неважно как завершилось - успешно и дойдя до конца блока, успешно и встречен return, или не успешно и вызвано исключение.
+			try {
+				System.err.println("try");
+			} finally {
+					System.err.println("finally");
+			}
+	finally-секция не будет выполнена только в одном случае - если в try была прекращена работа JVM:
+		- по вызову exit: System.exit(0); System.exit(42); (Runtime.getRuntime().exit(42); - синоним);
+		- по вызову halt: Runtime.getRuntime().halt(42);
+	Halt, в отличие от exit, вываливает из JVM сразу, не ожидая выполнения финализаторов (?, здесь не имеется в виду finally от try, думаю говорится о другом механизме), которые уместны у exit.
+
+**if (true) {throw new RuntimeException();}** - конструкция применяется если мы хотим вдруг влепить вызов исключения, а компилятор ругается, что дальнейший код недостижим. - помогает.
+
+
+
+
+
+
 
 
 

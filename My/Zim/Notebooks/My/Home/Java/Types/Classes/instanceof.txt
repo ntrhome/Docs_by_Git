@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-24T16:43:28+03:00
+
+====== instanceof ======
+Created середа 24 липень 2019
+
+(  if (e instanceof RuntimeException) ... )
+

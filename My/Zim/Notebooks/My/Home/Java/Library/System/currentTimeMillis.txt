@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-24T16:01:25+03:00
+
+====== currentTimeMillis ======
+Created середа 24 липень 2019
+
+**long time = System.currentTimeMillis();**
