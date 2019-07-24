@@ -1,0 +1,7 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-24T12:56:07+03:00
+
+====== hackerrunk ======
+Created Wednesday 24 July 2019
+
