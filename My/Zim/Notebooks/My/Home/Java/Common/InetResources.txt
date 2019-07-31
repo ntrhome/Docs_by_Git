@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-31T21:17:42+03:00
+
+====== InetResources ======
+Created Wednesday 31 July 2019
+
+
+**Задачники:**
+	[[hackerrank.com]]
+	https://leetcode.com/ - больше на алгоритмы
+
+
+
+https://javarush.ru/groups/posts/549-java-zadachi-s-podvokhom-privet-sobesedovanija#zadacha2
+https://javarush.ru/groups/posts/431-10-voprosov-po-abstraktnihm-klassam-i-interfeysam-s-sobesedovaniy-po-jazihku-java
+https://javarush.ru/groups/posts/458-key-khorstmann-i-ego-1500-slov-o-tom-kak-statjh-luchshim-java-programmistom--
+	Вначале «втяните» базовые языковые конструкции в свое подсознание, то есть доведите их знание до автоматизма путем решения большого числа упражнений.
+	Как можно быстрее приступите к работе над реальными проектами, интересными вам.
+	Затем присоединитесь к сообществу, где вы можете задавать вопросы и отвечать на них.
+	Как только вы это сделаете, на собеседованиях вы сможете говорить со знанием дела и опытом. И не так уж и важно, решите ли вы надуманную головоломку.
+GitSCM - git bash for Win
+
