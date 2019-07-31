@@ -1,0 +1,7 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-30T00:30:36+03:00
+
+====== Algorithms ======
+Created Tuesday 30 July 2019
+

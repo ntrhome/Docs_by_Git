@@ -1,0 +1,60 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-30T11:18:17+03:00
+
+====== arraycopy ======
+Created Tuesday 30 July 2019
+
+http://developer.alexanderklimov.ru/android/java/array.php
+
+**Cтатический метод System:**
+
+System.arraycopy(исх_мас, нач_с_инд, рез_мас, нач_в_инд, скоко) //смотреть этот и др.
+	- статический метод, который копирует массивы значительнее быстрее, чем при ручном копировании в цикле for (один из тестов: ручное копирование заняло 182 мс, а методом arraycopy() - 12 мс).
+
+Тест на сравнение времени:
+
+public class ArrayCopyTestActivity extends Activity {
+	private static final int SIZE_OF_ARRAY = 1000000;
+	private long time;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+        
+		Integer [] sourceArray = new Integer[SIZE_OF_ARRAY];
+		Integer [] dst = new Integer[SIZE_OF_ARRAY];
+		fillArray(sourceArray);
+        
+		startBenchmark();
+		naiveCopy(sourceArray,dst);
+		stopBenchmark();
+       
+		startBenchmark();
+		System.arraycopy(sourceArray, 0, dst, 0, sourceArray.length);
+		stopBenchmark();
+	}
+
+	private void naiveCopy(Integer [] src, Integer [] dst) {
+		for (int i = 0; i < src.length; i++) {
+			dst[i]=src[i];
+		}
+	}
+
+	private void fillArray(Integer [] src) {
+		for (int i = 0; i < src.length; i++) {
+			src[i]=i;
+		}
+	}
+	
+	private void startBenchmark() {
+		time = System.currentTimeMillis();
+	}
+	
+	private void stopBenchmark() {
+		time = System.currentTimeMillis() - time;
+		Log.d("array copy test", "time="+time);
+		
+	}
+}

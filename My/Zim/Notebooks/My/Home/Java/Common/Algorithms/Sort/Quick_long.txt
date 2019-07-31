@@ -1,0 +1,37 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-30T00:30:55+03:00
+
+====== Quick long ======
+Created Tuesday 30 July 2019
+
+	static void quicksort(long[] a, int low, int high){
+		if(low < high) {
+			int p = partition(a, low, high);
+			quicksort(a, low, p-1);
+			quicksort(a, p+1, high);
+		}
+	}
+	static int partition(long[] a, int low, int high){
+		int m = (low+high) / 2;
+		long pivot = a[m];
+		if(a[low] > a[m]) {pivot=a[low]; a[low]=a[m]; a[m]=pivot;}
+		if(a[m] > a[high]) {pivot=a[high]; a[high]=a[m]; a[m]=pivot;}
+		if(a[low] > a[m]) {pivot=a[low]; a[low]=a[m]; a[m]=pivot;}
+
+		long t;
+		int i=low, j=high, tmp;
+
+		while(true){
+			while(a[i]<pivot) ++i;
+			while(a[j]>pivot) --j;
+			if(i==j) return j; //>=
+			if(a[i]==a[j]) {
+				tmp=i+j;
+				i += (tmp)%2;
+				j -= (tmp+1)%2;
+			} else {
+				t=a[i]; a[i]=a[j]; a[j]=t;
+			}
+		}
+	}

@@ -2,7 +2,7 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2019-06-16T19:37:19+03:00
 
-====== Array ======
+====== ARRAY ======
 Created Воскресенье 16 июня 2019
 
 =================**Java - массив:**
@@ -145,4 +145,17 @@ __СТАТИЧЕСКИЙ МЕТОД???__
 System.out.println(Arrays.toString(myarray));
 > [0,1,2,3]
 - - - - - - - - - - - - - - - - -
+
+	
+	
+
+
+
+
+
+
+
+
+
+
 

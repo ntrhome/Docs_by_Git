@@ -12,6 +12,22 @@ Created Tuesday 23 July 2019
 		String s = scanner.next();
 		//String s = scanner.nextLine(); //and other methods
 	switch(s.charAt(0)) {
-case 'A':
+	case 'A':
 ...
 		scanner.close();
+
+
+
+Для ввода значений каждого примитивного типа в классе Scanner определен свой метод:
+	**next()**: считывает введенную строку до первого пробела
+	**nextLine()**: считывает всю введенную строку
+	**nextInt()**: считывает введенное число int
+	**nextDouble()**: считывает введенное число double
+	**nextBoolean()**: считывает значение boolean
+	**nextByte()**: считывает введенное число byte
+	**nextFloat()**: считывает введенное число float
+	**nextShort()**: считывает введенное число short
+
+
+
+

@@ -9,39 +9,65 @@ https://habr.com/ru/company/golovachcourses/blog/223821/
 
 (дальше - Механизм try - это "механизм исключений").
 
-**Ключевые слова:** 
-	try, 
-	catch, 
-	finally, 
-	throw, 
-	throws
+**Ключевые слова:**
+	**try, **
+	**catch, **
+	**finally, **
+	**throw, **
+	**throws**
+	
+**Описание:**
+	**try** {
+		// блок кода, в котором отслеживаются ошибки.
+		// Исключения могут генерироваться как пользователем - командой **throw**, 
+		// (причем швырнуть можно только объект семейства Throwable),
+		// так и системой;
+	}
+	**catch** (тип_исключения_1 ехObj) {
+		// обработчик исключений для тип_исключения_1.
+		// Причем если исключение не поймано в текущей конструкции try, 
+		// то оно может быть перехвачено во внешней объемлющей конструкции try.
+	}
+	...
+	**catch** (тип_исключения_N ехObj) {
+		// обработчик исключений для тип_исключения_N.
+	}
+	**finally** {
+		// блок кода, который непременно выполняется в конце отработки try,
+		// даже если выше встречен return,
+		// но кроме случая остановки JVM, например по вызову:
+		//	- **System.exit(0);**  0, 42 ... - неважно
+		//	- **Runtime.getRuntime().exit(42);**  синоним System.exit(42);
+		//	- **Runtime.getRuntime().halt(42);**
+	}
 
-**"Швыряемыми" объектами могут быть только объекты-исключения - наследники java.lang.Throwable:**
+**"Швыряемыми" могут быть только объекты-исключения семейства java.lang.Throwable:**
 	Иерархия исключений:
 							 Object
 								 |
 							Throwable
-							/        \
+							/             \
 						Error     Exception
 											|
 									RuntimeException
-	Классы-исключения имеют свои поля и методы...
+	Классы-исключения предоставляют свои поля и методы...
 	
 	"Магия" исключений заключается в том, что **catch, throw, throws** могут оперировать исключительно объектами-исключениями (либо их потомками).
 	("Магия" - некоторое поведение, на первый взгляд никак не отраженное в исходном коде).
-	Т.е. (1 строка - 1 пример):
-			- - ok:
-				public static void main(String[] args) throws Throwable {}
-				try {} catch (Throwable t) {}
-				throw new Error();
-				throw new RuntimeException(); //java.lang.RuntimeException (пригодится?)
-				throw new IllegalArgumentException("Negative sizes");
-			- - bad:
-				public static void main(String[] args) throws String {}
-				try {} catch (String s) {}
-				throw new String("Hello!");
-	
+
 	__И с null'ом тут разобраться, - типа швырнуть просто null нельзя, а вот швырнуть переменную-ссылку типа java.lang.Throwable, которая равна null, - можно. Понимаю так: просто null принимается как (Object) null, а надо (java.lang.Throwable) null.__
+
+	//Т.е. (1 строка - 1 пример)://
+			//- - ok://
+				//public static void main(String[] args) throws Throwable {}//
+				//try {} catch (Throwable t) {}//
+				//throw new Error();//
+				//throw new RuntimeException(); //java.lang.RuntimeException (пригодится?)//
+				//throw new IllegalArgumentException("Negative sizes");//
+			//- - bad://
+				//public static void main(String[] args) throws String {}//
+				//try {} catch (String s) {}//
+				//throw new String("Hello!");//
 	
 **Механизм try использует System.err, а не System.out:**
 	Поэтому помним, что System.out - buffered-поток вывода, а System.err - нет, и при выполнении кода:

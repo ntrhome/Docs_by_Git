@@ -16,7 +16,7 @@ class A
 - - - - - - - - - - - - - 
 Лажа со звездочкой в командной строке.
 - - - - - - - - - - - - - 
-Вариант вида "java Topclass < input.txt" - не вариант. По сведениям инета "< input.txt" для java формирует не аргументы командной строки а буфнр пользовательского ввода (что тоже не плохл, но не то).
+Вариант вида "java Topclass < input.txt" - не вариант. По сведениям инета "< input.txt" для java формирует не аргументы командной строки а буфер пользовательского ввода (что тоже не плохо).
 https://stackoverflow.com/questions/196824/java-file-input-as-command-line-argument
 //Inputing a file via "< input.txt" inputs it as user input rather than as a command line argument.// 
 - - - - - - - - - - - - - 

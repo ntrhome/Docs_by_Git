@@ -6,3 +6,5 @@ Creation-Date: 2019-07-24T16:01:25+03:00
 Created середа 24 липень 2019
 
 **long time = System.currentTimeMillis();**
+
+см. ARRAY.arraycopy - там пример.
