@@ -16,7 +16,8 @@ Created Tuesday 23 July 2019
 ...
 		scanner.close();
 
-
+scanner.skip("[\r\n]+"); //CR - "\r", LF - "\n"
+scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?"); //из hackerrank
 
 Для ввода значений каждого примитивного типа в классе Scanner определен свой метод:
 	**next()**: считывает введенную строку до первого пробела
