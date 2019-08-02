@@ -14,7 +14,7 @@ Created Tuesday 23 July 2019
 	switch(s.charAt(0)) {
 	case 'A':
 ...
-		scanner.close();
+	scanner.close();
 
 
 
