@@ -7,7 +7,7 @@ Created Wednesday 31 July 2019
 
 
 **Задачники:**
-	[[hackerrank.com]]
+	hackerrank.com
 	https://leetcode.com/ - больше на алгоритмы
 
 
