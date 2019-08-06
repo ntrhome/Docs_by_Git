@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-10T23:37:43+03:00
+
+====== System ======
+Created Понедельник 10 июня 2019
+
+
+Module [[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/module-summary.html|java.base]] -> Package [[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/package-summary.html|java.lang]]
+Class [[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/System.html|System]]
+	java.lang.Object
+		java.lang.System 
+
+Класс System является стандартным в Java и ав­томатически включается в прикладные программы.
+
+

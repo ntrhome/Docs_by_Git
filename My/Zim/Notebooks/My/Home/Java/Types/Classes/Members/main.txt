@@ -12,14 +12,51 @@ class A
 	}
 }
 
-Арrументы командной строки, разделенные пробелом, хранятся в виде символьных строк в массиве типа String, передавае­мом методу mаin(). Первый - в элементе args[О] и т.д.
+Арrументы командной строки, разделенные пробелом, хранятся в виде символьных строк в массиве типа String, передавае­мом методу mаin(). Первый - в элементе args[0] и т.д.
 - - - - - - - - - - - - - 
 Лажа со звездочкой в командной строке.
 - - - - - - - - - - - - - 
-Вариант вида "java Topclass < input.txt" - не вариант. По сведениям инета "< input.txt" для java формирует не аргументы командной строки а буфер пользовательского ввода (что тоже не плохо).
+"java Topclass < input.txt" - формирует буфер пользовательского ввода.
 https://stackoverflow.com/questions/196824/java-file-input-as-command-line-argument
 //Inputing a file via "< input.txt" inputs it as user input rather than as a command line argument.// 
 - - - - - - - - - - - - - 
+**Полезный пример (**[[https://www.youtube.com/watch?v=VU5-OawZQCY|консольный ввод, перенаправление из файла]]**):**
+		import java.util.Scanner;
+		import java.io.FileInputStream;
+		import java.io.IOException;
+		
+		public class Main {
+			public static void main(String[] args) throws IOException {
+				System.setIn(new FileInputStream("__FileFromRootOfCurrentProject__.txt"));
+				var scanner = new Scanner(System.in);
+				
+				System.out.println("Enter word:");
+				String s = scanner.next();
+				System.out.println("word is:");
+				System.out.println(s);
+				
+				scanner.close();
+			}
+		}
+		
+		
+
+	~~через буфер - классно, но чуть сырое - легко имсправить:~~
+		~~import java.io.BufferedReader;~~
+		~~import java.io.IOException;~~
+		~~import java.io.InputStreamReader;~~
+				~~class Main{~~
+			~~System.setIn(new FileInputStream("FileFromRootOfCurrentProject.txt"));~~
+					~~public static BufferedReader in;~~
+						~~punlic static void main(String [] args) throws IOException{~~
+				~~in = new BufferedReader(new InputStreamReader(System.in));~~
+				~~String [] headers = in.readLine().split(",");~~
+				~~in.readLine();~~
+				~~for(String e: headers){~~
+					~~int i = Integer.parseInt(e);~~
+				~~}  ~~
+			~~}~~
+		~~}~~
 
 - - - - - - - - - - - - - 
 

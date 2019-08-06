@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-05T01:00:53+03:00
+
+====== setIn ======
+Created Monday 05 August 2019
+
+**Method **System.[[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/System.html#setIn(java.io.InputStream)|setIn]]
+
+public static void setIn​(InputStream in)
+
+Reassigns the "standard" input stream. First, if there is a security manager, its checkPermission method is called with a RuntimePermission("setIO") permission to see if it's ok to reassign the "standard" input stream.
+

@@ -5,3 +5,4 @@ Creation-Date: 2019-07-22T13:29:14+03:00
 ====== util ======
 Created понеділок 22 липень 2019
 
+Module [[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/module-summary.html|java.base]] -> Package [[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/package-summary.html|java.util]]

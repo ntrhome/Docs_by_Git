@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-03T12:34:54+03:00
+
+====== math ======
+Created Saturday 03 August 2019
+
+Module [[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/module-summary.html|java.base]] -> Package [[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/math/package-summary.html|java.math]]
+
+classes:
+**BigDecimal** 	- 	Immutable, arbitrary-precision signed decimal numbers.
+**BigInteger** 	- 	Immutable arbitrary-precision integers.
+**MathContext** 	- 	Immutable objects which encapsulate the context settings which describe certain rules for numerical operators, such as those implemented by the BigDecimal class.
+
+enums:
+**RoundingMode** 	- 	Specifies a rounding behavior for numerical operations capable of discarding precision.
