@@ -16,8 +16,7 @@ Created Tuesday 23 July 2019
 ...
 	scanner.close();
 
-scanner.skip("[\r\n]+"); //CR - "\r", LF - "\n"
-scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?"); //из hackerrank
+
 
 Для ввода значений каждого примитивного типа в классе Scanner определен свой метод:
 	**next()**: считывает введенную строку до первого пробела
@@ -28,6 +27,25 @@ scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?"); //из hackerrank
 	**nextByte()**: считывает введенное число byte
 	**nextFloat()**: считывает введенное число float
 	**nextShort()**: считывает введенное число short
+
+- - - - - - -
+**The skip() method** available in the Scanner class. 
+It works by taking in a pattern/regex and will skip the input that matches the said pattern.
+
+	scanner.skip("[\r\n]+"); //CR - "\r", LF - "\n"
+	scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?"); //из hackerrank
+	scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])*"); //из hackerrank
+
+Line break control character is different for different OS: 
+	- Linux has \n escape sequence, 
+	- Mac has \r 
+	- Windows keeps \r\n.
+Additionally
+	\u2028 is Unicode character LINE SEPARATOR
+	\u2029 is Unicode character PARAGRAPH SEPARATOR
+	\u0085 is Unicode character NEXT LINE (NEL)
+
+
 
 
 

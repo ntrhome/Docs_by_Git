@@ -1,0 +1,21 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-10T00:39:00+03:00
+
+====== regex ======
+Created Saturday 10 August 2019
+
+**Module java.base**
+**Package **[[https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/regex/package-summary.html|java.util.regex]]
+
+Classes for matching character sequences against patterns specified by regular expressions.
+
+Consists of three classes: Pattern, Matcher, and PatternSyntaxException (etc).
+
+- - - - - -
+
+**Lesson (Oracle): Regular Expressions**
+https://docs.oracle.com/javase/tutorial/essential/regex/index.html
+(https://docs.oracle.com/en/java/javase/12/ -> Java Tutorials -> Essential Java Classes -> Regular Expressions)
+
+- - - - - -
