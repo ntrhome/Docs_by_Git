@@ -24,7 +24,7 @@ do
 double
 else
 enum
-exports
+exports (module)
 extende
 final
 finally
@@ -38,17 +38,17 @@ instanceof
 int
 interface
 long
-module
+module (module)
 native
 new
-open
-opens
+open (module)
+opens (module)
 package
 private
 protected
-provides
+provides (module)
 public
-requires
+requires (module)
 return
 short
 static
@@ -59,15 +59,15 @@ synchronized
 this
 throw
 throws
-to
+to (module)
 transient
-transitive
+transitive (module)
 try
-uses
+uses (module)
 void
 volatile
 while
-with
+with (module)
 	а также:
 false
 true
