@@ -52,7 +52,10 @@ __- Googlовские API !!!__ https://developers.google.com/android/guides/api
 - идеи - самый сильный стимул (деньги-идеи - хорошо), 
 - компромат, 
 - связи
-
-
+= = = = = = = = = = = = = = = = =
+c
+py
+has
+ll
 
 
